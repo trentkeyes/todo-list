@@ -16,17 +16,27 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _todoItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todoItem */ \"./src/todoItem.js\");\n\n\n//dom stuff\n\nconst inputTodo = (e) => {\n  if (e.key === \"Enter\") {\n    const input = e.target.value;\n    (0,_todoItem__WEBPACK_IMPORTED_MODULE_0__.createTodo)(input);\n    textInput.value = \"\";\n  }\n};\n\nconst textInput = document.querySelector(\".todoInput\");\ntextInput.addEventListener(\"keypress\", inputTodo);\n\nconst content = document.querySelector(\"#content\");\n\n// const addTodo = document.createElement(\"button\");\n// addTodo.textContent = \"Add a todo\";\n// content.appendChild(addTodo);\n\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _todoData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todoData */ \"./src/todoData.js\");\n\n\n//dom stuff\n\nconst inputTodo = (e) => {\n  if (e.key === \"Enter\") {\n    const input = e.target.value;\n    _todoData__WEBPACK_IMPORTED_MODULE_0__.todoData.createTodo(input);\n    textInput.value = \"\";\n  }\n};\n\nconst textInput = document.querySelector(\".todoInput\");\ntextInput.addEventListener(\"keypress\", inputTodo);\n\nconst content = document.querySelector(\"#content\");\n\n// const addTodo = document.createElement(\"button\");\n// addTodo.textContent = \"Add a todo\";\n// content.appendChild(addTodo);\n\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
 
 /***/ }),
 
-/***/ "./src/todoItem.js":
+/***/ "./src/todoData.js":
 /*!*************************!*\
-  !*** ./src/todoItem.js ***!
+  !*** ./src/todoData.js ***!
   \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"createTodo\": () => (/* binding */ createTodo)\n/* harmony export */ });\nconst todoData = (() => {\n  const todos = [];\n  let id = 0;\n  const getID = () => id;\n  const addTodo = (item) => {\n    todos.push(item);\n    id++;\n  };\n  const getTodos = () => todos;\n  return { addTodo, getTodos, getID };\n})();\n\nconst todoItem = (name) => {\n  const sayName = () => console.log(`My title is: ${name}`);\n  return { name, sayName };\n};\n\nconst createTodo = (name) => {\n  const newTodo = todoItem(name);\n  newTodo.id = todoData.getID();\n  todoData.addTodo(newTodo);\n  console.log(todoData.getTodos());\n};\n\n\n\n\n//# sourceURL=webpack://todo-list/./src/todoItem.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"todoData\": () => (/* binding */ todoData)\n/* harmony export */ });\n/* harmony import */ var _todoModel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todoModel */ \"./src/todoModel.js\");\n\n\nconst todoData = (() => {\n  const todos = [];\n  let id = 0;\n  const getID = () => id;\n  const createTodo = (name) => {\n    const newTodo = (0,_todoModel__WEBPACK_IMPORTED_MODULE_0__.todoModel)(name);\n    newTodo.id = id;\n    todos.push(newTodo);\n    id++;\n    getTodos();\n  };\n  const getTodos = () => {\n    console.log(todos);\n    return todos;\n  };\n  return { createTodo, getTodos, getID };\n})();\n\n//add model folder, create two different files, todoItem.js, category.js\n\n\n\n\n//# sourceURL=webpack://todo-list/./src/todoData.js?");
+
+/***/ }),
+
+/***/ "./src/todoModel.js":
+/*!**************************!*\
+  !*** ./src/todoModel.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"todoModel\": () => (/* binding */ todoModel)\n/* harmony export */ });\nconst todoModel = (name) => {\n  const sayName = () => console.log(`My title is: ${name}`);\n  return { name, sayName };\n};\n\n\n\n\n//# sourceURL=webpack://todo-list/./src/todoModel.js?");
 
 /***/ })
 

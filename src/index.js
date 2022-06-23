@@ -1,11 +1,11 @@
-import { createTodo } from "./todoItem";
+import { todoData } from "./todoData";
 
 //dom stuff
 
 const inputTodo = (e) => {
   if (e.key === "Enter") {
     const input = e.target.value;
-    createTodo(input);
+    todoData.createTodo(input);
     textInput.value = "";
   }
 };

@@ -1,10 +1,20 @@
-import { todoItem } from "./todoItem";
-console.log("hola");
+import { createTodo } from "./todoItem";
 
-let goShopping = todoItem("I need to go shopping", "high");
+//dom stuff
 
-goShopping.sayTitle();
+const inputTodo = (e) => {
+  if (e.key === "Enter") {
+    const input = e.target.value;
+    createTodo(input);
+    textInput.value = "";
+  }
+};
 
-let thing = "thing";
+const textInput = document.querySelector(".todoInput");
+textInput.addEventListener("keypress", inputTodo);
 
-const sayThing = () => console.log(thing);
+const content = document.querySelector("#content");
+
+// const addTodo = document.createElement("button");
+// addTodo.textContent = "Add a todo";
+// content.appendChild(addTodo);

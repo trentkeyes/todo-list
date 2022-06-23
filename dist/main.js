@@ -16,7 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _todoItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todoItem */ \"./src/todoItem.js\");\n\nconsole.log(\"hola\");\n\nlet goShopping = (0,_todoItem__WEBPACK_IMPORTED_MODULE_0__.todoItem)(\"I need to go shopping\", \"high\");\n\ngoShopping.sayTitle();\n\nlet thing = \"thing\";\n\nconst sayThing = () => console.log(thing);\n\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _todoItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todoItem */ \"./src/todoItem.js\");\n\n\n//dom stuff\n\nconst inputTodo = (e) => {\n  if (e.key === \"Enter\") {\n    const input = e.target.value;\n    (0,_todoItem__WEBPACK_IMPORTED_MODULE_0__.createTodo)(input);\n    textInput.value = \"\";\n  }\n};\n\nconst textInput = document.querySelector(\".todoInput\");\ntextInput.addEventListener(\"keypress\", inputTodo);\n\nconst content = document.querySelector(\"#content\");\n\n// const addTodo = document.createElement(\"button\");\n// addTodo.textContent = \"Add a todo\";\n// content.appendChild(addTodo);\n\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
 
 /***/ }),
 
@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _tod
   \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"todoItem\": () => (/* binding */ todoItem)\n/* harmony export */ });\nconst todoItem = (title, priority) => {\n  const getTitle = () => title;\n  const getPriority = () => priority;\n  const sayTitle = () => console.log(`My title is: ${title}`);\n  return { title, priority, sayTitle };\n};\n\n\n\n\n//# sourceURL=webpack://todo-list/./src/todoItem.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"createTodo\": () => (/* binding */ createTodo)\n/* harmony export */ });\nconst todoData = (() => {\n  const todos = [];\n  let id = 0;\n  const getID = () => id;\n  const addTodo = (item) => {\n    todos.push(item);\n    id++;\n  };\n  const getTodos = () => todos;\n  return { addTodo, getTodos, getID };\n})();\n\nconst todoItem = (name) => {\n  const sayName = () => console.log(`My title is: ${name}`);\n  return { name, sayName };\n};\n\nconst createTodo = (name) => {\n  const newTodo = todoItem(name);\n  newTodo.id = todoData.getID();\n  todoData.addTodo(newTodo);\n  console.log(todoData.getTodos());\n};\n\n\n\n\n//# sourceURL=webpack://todo-list/./src/todoItem.js?");
 
 /***/ })
 

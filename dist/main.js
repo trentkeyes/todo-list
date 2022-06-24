@@ -36,7 +36,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"todoModel\": () => (/* binding */ todoModel)\n/* harmony export */ });\nconst todoModel = (name) => {\n  const sayName = () => console.log(`My title is: ${name}`);\n  return { name, sayName };\n};\n\n\n\n\n//# sourceURL=webpack://todo-list/./src/todoModel.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"todoModel\": () => (/* binding */ todoModel)\n/* harmony export */ });\nconst todoModel = (title, description) => {\n  const getTitle = () => title;\n  const editTitle = (newTitle) => (title = newTitle);\n  const getDescription = () => description;\n  const editDescription = (newDescription) => (description = newDescription);\n\n  // dueDate, edit duedate\n  //priority, edit priority (number or low, medium high?)\n  //complete todo boolean\n  let complete = false;\n  return { getTitle, editTitle, getDescription, editDescription };\n};\n\n\n\n\n//# sourceURL=webpack://todo-list/./src/todoModel.js?");
 
 /***/ })
 

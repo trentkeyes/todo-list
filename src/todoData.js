@@ -4,8 +4,8 @@ const todoData = (() => {
   const todos = [];
   let id = 0;
   const getID = () => id;
-  const createTodo = (name) => {
-    const newTodo = todoModel(name);
+  const createTodo = (name, description) => {
+    const newTodo = todoModel(name, description);
     newTodo.id = id;
     todos.push(newTodo);
     id++;

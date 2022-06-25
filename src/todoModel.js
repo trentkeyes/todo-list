@@ -8,7 +8,14 @@ const todoModel = (title, description) => {
   //priority, edit priority (number or low, medium high?)
   //complete todo boolean
   let complete = false;
-  return { getTitle, editTitle, getDescription, editDescription };
+  return {
+    getTitle,
+    editTitle,
+    getDescription,
+    editDescription,
+    title,
+    description,
+  };
 };
 
 export { todoModel };

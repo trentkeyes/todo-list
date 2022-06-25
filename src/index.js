@@ -22,9 +22,17 @@ const inputTodo = (e) => {
   const description = document.querySelector("#description").value;
   const dueDate = document.querySelector("#dueDate").value;
   const priority = document.querySelector("#priority").value;
-  console.log(dueDate, priority);
   todoData.createTodo(taskName, description, dueDate, priority);
+  displayTodo();
 };
 
-const taskButton = document.querySelector("#taskButton");
-taskButton.addEventListener("click", inputTodo);
+const displayTodo = () => {
+  const main = document.querySelector(".main");
+  const todoTest = document.createElement("p");
+  const todoArr = todoData.getTodos();
+  todoTest.textContent = todoArr[todoArr.length - 1].getTitle();
+  main.appendChild(todoTest);
+};
+
+const addTaskButton = document.querySelector("#taskButton");
+addTaskButton.addEventListener("click", inputTodo);

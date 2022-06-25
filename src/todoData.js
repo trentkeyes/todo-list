@@ -12,7 +12,7 @@ const todoData = (() => {
     getTodos();
   };
   const getTodos = () => {
-    console.log(todos);
+    //  console.log(todos);
     return todos;
   };
   return { createTodo, getTodos };

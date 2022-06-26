@@ -16,35 +16,29 @@ const displayTodo = () => {
   const checkbox = document.createElement("input");
   checkbox.setAttribute("type", "checkbox");
 
-  // checkbox.todoID = todoData.getNewTodoID();
-
   const list = document.querySelector(".todo-list");
   const listItem = document.createElement("li");
-  listItem.todoID = todoData.getNewTodoID();
-
   listItem.classList.add("todoItem");
-  list.prepend(listItem);
+  const form = document.querySelector(".todo-form");
+
+  list.insertBefore(listItem, form);
   const newTodo = document.createElement("label");
   newTodo.classList.add("todoText");
-  const hr = document.createElement("hr");
-  hr.classList.add("hr");
   listItem.appendChild(checkbox);
   listItem.appendChild(newTodo);
-  listItem.after(hr);
+
+  listItem.todoID = todoData.getNewTodoID();
   newTodo.textContent = todoData.getNewTodo();
-
-  // hr.setAttribute("width", "100px");
-
   checkbox.addEventListener("click", markComplete);
 };
 
 const markComplete = (e) => {
   const list = document.querySelector(".todo-list");
   const listItem = e.target.parentElement;
-  const hr = document.querySelector(".hr");
   list.removeChild(listItem);
-  list.removeChild(hr);
   console.log(e.target.parentElement.todoID);
+
+  // need to remove the line in a different way. It always takes the one from the top.
 };
 
 const addTaskButton = document.querySelector("#taskButton");

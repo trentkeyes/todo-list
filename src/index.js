@@ -15,18 +15,28 @@ const inputTodo = (e) => {
 const displayTodo = () => {
   const checkbox = document.createElement("input");
   checkbox.setAttribute("type", "checkbox");
+  checkbox.todoID = todoData.getNewTodoID();
+
   const list = document.querySelector(".todo-list");
   const listItem = document.createElement("li");
   listItem.classList.add("todoItem");
   list.prepend(listItem);
   const newTodo = document.createElement("label");
   newTodo.classList.add("todoText");
-  newTodo.textContent = todoData.getNewTodo();
   const hr = document.createElement("hr");
-  // hr.setAttribute("width", "100px");
   listItem.appendChild(checkbox);
   listItem.appendChild(newTodo);
   listItem.after(hr);
+  newTodo.textContent = todoData.getNewTodo();
+
+  // hr.setAttribute("width", "100px");
+
+  checkbox.addEventListener("click", markComplete);
+};
+
+const markComplete = (e) => {
+  const list = document.querySelector(".todo-list");
+  console.log(e.target.todoID);
 };
 
 const addTaskButton = document.querySelector("#taskButton");

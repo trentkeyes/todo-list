@@ -15,7 +15,8 @@ const todoData = (() => {
     return todos;
   };
   const getNewTodo = () => todos[todos.length - 1].getTitle();
-  return { createTodo, getTodos, getNewTodo };
+  const getNewTodoID = () => todos[todos.length - 1].id;
+  return { createTodo, getTodos, getNewTodo, getNewTodoID };
 })();
 
 export { todoData };

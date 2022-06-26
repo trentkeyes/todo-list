@@ -27,11 +27,19 @@ const inputTodo = (e) => {
 };
 
 const displayTodo = () => {
-  const main = document.querySelector(".main");
-  const todoTest = document.createElement("p");
-  const todoArr = todoData.getTodos();
-  todoTest.textContent = todoArr[todoArr.length - 1].getTitle();
-  main.appendChild(todoTest);
+  const checkbox = document.createElement("input");
+  checkbox.setAttribute("type", "checkbox");
+  const list = document.querySelector(".todo-list");
+  const listItem = document.createElement("li");
+  listItem.classList.add("todoItem");
+  list.appendChild(listItem);
+  const newTodo = document.createElement("label");
+  newTodo.classList.add("todoText");
+  newTodo.textContent = todoData.getNewTodo();
+  const hr = document.createElement("hr");
+  listItem.appendChild(checkbox);
+  listItem.appendChild(newTodo);
+  list.appendChild(hr);
 };
 
 const addTaskButton = document.querySelector("#taskButton");

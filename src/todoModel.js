@@ -10,7 +10,7 @@ const todoModel = (title, description, dueDate, priority) => {
   const setTitle = (newTitle) => (title = newTitle);
   const getDescription = () => description;
   const setDescription = (newDescription) => (description = newDescription);
-  const getDueDate = (dueDate) => {
+  const getDueDate = () => {
     dueDate = dueDate.split("-");
     const formattedDate = format(
       new Date(dueDate[0], Number(dueDate[1]) - 1, dueDate[2]),
@@ -24,7 +24,7 @@ const todoModel = (title, description, dueDate, priority) => {
 
   //  const getall formatted Info
   //complete todo boolean
-
+  // might just need getTitle, get everything else, and set functions
   return {
     setCompleteStatus,
     getTitle,

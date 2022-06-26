@@ -10,7 +10,7 @@
 
 body {
     margin: 0px;
-    
+
 }
 
 .wrapper {
@@ -18,29 +18,30 @@ body {
     grid-template-columns: 1fr 4fr;
     grid-template-rows: auto 1fr auto;
     grid-template-areas:
-               "header  header"
-               "nav     main"
-               "footer  footer";
+        "header  header"
+        "nav     main"
+        "footer  footer";
     height: 100vh;
 }
 
-.nav, .header, .footer {
-    border-radius: 5px;
-padding-left: 40px;
+.nav,
+.header,
+.footer {
+    padding-left: 40px;
 }
 
 .nav {
     grid-area: nav;
     padding-top: 30px;
-  }
+}
 
-  .main {
+.main {
     grid-area: main;
     background-color: hsl(0deg 0% 12%);
-    padding: 30px;
-  }
+    padding: 20px 0px 20px 40px;
+}
 
-  .header {
+.header {
     grid-area: header;
     display: flex;
     justify-content: space-between;
@@ -48,17 +49,21 @@ padding-left: 40px;
     font-size: 30px;
     padding: 10px;
     padding-left: 40px;
-  }
+}
 
-  .footer {
-      grid-area: footer;
-      padding: 10px;
-      padding-left: 40px;
-      text-align: center;
-  }
+.footer {
+    grid-area: footer;
+    padding: 10px;
+    padding-left: 40px;
+    text-align: center;
+}
 
-.nav, .header, .footer, li, a {
-    background-color:hsl(0deg 0% 14%)
+.nav,
+.header,
+.footer,
+li,
+a {
+    background-color: hsl(0deg 0% 14%)
 }
 
 .todo-form li {
@@ -68,8 +73,26 @@ padding-left: 40px;
 nav ul {
     display: flex;
     flex-direction: column;
-  }
+}
 
-  fieldset {
-      outline: none;
-  }
+.inbox-header {
+    font-size: 22px;
+    padding-bottom: 5px;
+    padding-left: 2px;
+}
+
+.todoItem {
+    padding: 10px 0px 10px 5px;
+    background-color: hsl(0deg 0% 12%);
+    border-radius: 2px;
+}
+
+.todoItem:hover {
+    background-color: hsl(0deg 0% 16%);
+}
+
+
+.todoText {
+    padding-left: 8px;
+    background-color: inherit;
+}

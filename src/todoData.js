@@ -3,7 +3,6 @@ import { todoModel } from "./todoModel";
 const todoData = (() => {
   const todos = [];
   let id = 0;
-  const getID = () => id;
   const createTodo = (name, description, dueDate, priority) => {
     const newTodo = todoModel(name, description, dueDate, priority);
     newTodo.id = id;
@@ -15,7 +14,8 @@ const todoData = (() => {
     //  console.log(todos);
     return todos;
   };
-  return { createTodo, getTodos };
+  const getNewTodo = () => todos[todos.length - 1].getTitle();
+  return { createTodo, getTodos, getNewTodo };
 })();
 
 export { todoData };

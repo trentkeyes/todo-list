@@ -15,15 +15,19 @@ const inputTodo = (e) => {
 const displayTodo = () => {
   const checkbox = document.createElement("input");
   checkbox.setAttribute("type", "checkbox");
-  checkbox.todoID = todoData.getNewTodoID();
+
+  // checkbox.todoID = todoData.getNewTodoID();
 
   const list = document.querySelector(".todo-list");
   const listItem = document.createElement("li");
+  listItem.todoID = todoData.getNewTodoID();
+
   listItem.classList.add("todoItem");
   list.prepend(listItem);
   const newTodo = document.createElement("label");
   newTodo.classList.add("todoText");
   const hr = document.createElement("hr");
+  hr.classList.add("hr");
   listItem.appendChild(checkbox);
   listItem.appendChild(newTodo);
   listItem.after(hr);
@@ -36,7 +40,11 @@ const displayTodo = () => {
 
 const markComplete = (e) => {
   const list = document.querySelector(".todo-list");
-  console.log(e.target.todoID);
+  const listItem = e.target.parentElement;
+  const hr = document.querySelector(".hr");
+  list.removeChild(listItem);
+  list.removeChild(hr);
+  console.log(e.target.parentElement.todoID);
 };
 
 const addTaskButton = document.querySelector("#taskButton");

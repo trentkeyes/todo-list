@@ -1,16 +1,20 @@
 const projectData = (() => {
-  const todos = [];
-  let id = 0;
-  const addTodo = (todo) => {
-    todos.push(todo);
-    id++;
+  let projects = {
+    completed: [],
   };
-  const getTodos = () => {
-    console.log(todos);
-    return todos;
+  const addToProject = (item, title) => {
+    if (!title) {
+      projects[title] = [];
+      // event to add project to sidebar
+    }
+    projects[title].push(item);
+    console.log(projects);
   };
-  const getNewTodo = () => todos[todos.length - 1].getTitle();
-  return { addTodo, getTodos, getNewTodo };
+
+  //edit project name
+  // display project event
+
+  return { addToProject };
 })();
 
 export { projectData };

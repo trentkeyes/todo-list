@@ -2,9 +2,13 @@ import { format, add } from "date-fns";
 
 const todoModel = (title, description, dueDate, priority) => {
   let complete = false;
-  const setCompleteStatus = () => {
+  const setStatus = () => {
     complete ? (complete = false) : (complete = true);
     //trigger dom event to make task dissapear
+  };
+  const getStatus = () => {
+    console.log(complete);
+    return complete;
   };
   const getTitle = () => title;
   const setTitle = (newTitle) => (title = newTitle);
@@ -23,10 +27,9 @@ const todoModel = (title, description, dueDate, priority) => {
   const setPriority = (newPriority) => (priority = newPriority);
 
   //  const getall formatted Info
-  //complete todo boolean
   // might just need getTitle, get everything else, and set functions
   return {
-    setCompleteStatus,
+    setStatus,
     getTitle,
     setTitle,
     getDescription,
@@ -35,6 +38,7 @@ const todoModel = (title, description, dueDate, priority) => {
     setDueDate,
     getPriority,
     setPriority,
+    getStatus,
   };
 };
 

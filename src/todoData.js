@@ -1,4 +1,5 @@
 import { todoModel } from "./todoModel";
+import { projectData } from "./projectData";
 
 const todoData = (() => {
   const todos = [];
@@ -11,12 +12,25 @@ const todoData = (() => {
     getTodos();
   };
   const getTodos = () => {
-    //  console.log(todos);
+    console.log(todos);
     return todos;
   };
+  //consolodate these
   const getNewTodo = () => todos[todos.length - 1].getTitle();
   const getNewTodoID = () => todos[todos.length - 1].id;
-  return { createTodo, getTodos, getNewTodo, getNewTodoID };
+  const setTodoStatus = (index) => {
+    todos[index].setStatus();
+    projectData.addToProject(todos[index], "completed");
+  };
+  const addToProject = (item, title) => projectData.addToProject(item, title);
+  return {
+    createTodo,
+    getTodos,
+    getNewTodo,
+    getNewTodoID,
+    setTodoStatus,
+    addToProject,
+  };
 })();
 
 export { todoData };

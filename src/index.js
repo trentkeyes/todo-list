@@ -15,12 +15,10 @@ const inputTodo = (e) => {
 const displayTodo = () => {
   const checkbox = document.createElement("input");
   checkbox.setAttribute("type", "checkbox");
-
   const list = document.querySelector(".todo-list");
   const listItem = document.createElement("li");
   listItem.classList.add("todoItem");
   const form = document.querySelector(".todo-form");
-
   list.insertBefore(listItem, form);
   const newTodo = document.createElement("label");
   newTodo.classList.add("todoText");
@@ -36,10 +34,10 @@ const markComplete = (e) => {
   const list = document.querySelector(".todo-list");
   const listItem = e.target.parentElement;
   list.removeChild(listItem);
-  console.log(e.target.parentElement.todoID);
-
-  // need to remove the line in a different way. It always takes the one from the top.
+  todoData.setTodoStatus(listItem.todoID);
 };
+
+const addToProject = [];
 
 const addTaskButton = document.querySelector("#taskButton");
 addTaskButton.addEventListener("click", inputTodo);

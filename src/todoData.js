@@ -4,11 +4,14 @@ import { projectData } from "./projectData";
 const todoData = (() => {
   const todos = [];
   let id = 0;
-  const createTodo = (name, description, dueDate, priority) => {
+  const createTodo = (name, description, dueDate, priority, project) => {
     const newTodo = todoModel(name, description, dueDate, priority);
     newTodo.id = id;
     todos.push(newTodo);
     id++;
+    if (project) {
+      projectData.addToProject(newTodo, project);
+    }
     getTodos();
   };
   const getTodos = () => {
@@ -22,14 +25,12 @@ const todoData = (() => {
     todos[index].setStatus();
     projectData.addToProject(todos[index], "completed");
   };
-  const addToProject = (item, title) => projectData.addToProject(item, title);
   return {
     createTodo,
     getTodos,
     getNewTodo,
     getNewTodoID,
     setTodoStatus,
-    addToProject,
   };
 })();
 

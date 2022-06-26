@@ -8,7 +8,8 @@ const inputTodo = (e) => {
   const description = document.querySelector("#description").value;
   const dueDate = document.querySelector("#dueDate").value;
   const priority = document.querySelector("#priority").value;
-  todoData.createTodo(taskName, description, dueDate, priority);
+  const project = document.querySelector("#projectName").value;
+  todoData.createTodo(taskName, description, dueDate, priority, project);
   displayTodo();
 };
 
@@ -41,3 +42,7 @@ const addToProject = [];
 
 const addTaskButton = document.querySelector("#taskButton");
 addTaskButton.addEventListener("click", inputTodo);
+
+//pop up form
+
+//pop up expanded todo info that lets you edit

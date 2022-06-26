@@ -3,7 +3,7 @@ const projectData = (() => {
     completed: [],
   };
   const addToProject = (item, title) => {
-    if (!title) {
+    if (!projects[title]) {
       projects[title] = [];
       // event to add project to sidebar
     }

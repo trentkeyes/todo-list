@@ -25,6 +25,9 @@ const todoModel = (title, description, dueDate, priority) => {
   const setDueDate = (newDueDate) => (dueDate = newDueDate);
   const getPriority = () => priority;
   const setPriority = (newPriority) => (priority = newPriority);
+  //add to prject
+  
+
 
   //  const getall formatted Info
   // might just need getTitle, get everything else, and set functions

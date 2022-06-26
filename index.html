@@ -1,63 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todoish</title>
-    <link rel="stylesheet" href="/src/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todoish</title>
+  <link rel="stylesheet" href="/src/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <div class="wrapper">
-        <div class="header">Todoish</div>
-        <nav class="nav">
-            <ul>
-              <li><a href="">Inbox</a></li>
-              <li><a href="">Project 1</a></li>
-              <li><a href="">Project 2</a></li>
-            </ul>
-          </nav>
-        <div class="main">
-          <h1>Inbox</h1>
-            <div class="todo-form">
-                 <ul>
-                        <li>
-                            <label for="Task name"></label>
-                            <input type="text" id="taskName" name="task" placeholder="Task name"required>
-                          </li>
-                          <li>
-                            <label for="Description"></label>
-                            <input type="text" id="description" name="task" placeholder="Description">
-                          </li>
-                          <li>
+  <div class="wrapper">
+    <div class="header">Todoish</div>
+    <nav class="nav">
+      <ul>
+        <li><a href="">Inbox</a></li>
+        <li><a href="">Project 1</a></li>
+        <li><a href="">Project 2</a></li>
+      </ul>
+    </nav>
+    <div class="main">
+      <h1 class="inbox-header">Inbox</h1>
+      <div class="todo-list">
+      </div>
+      <div class="todo-form">
+        <ul>
+          <li class="button">
+            <input type="button" value="Add task" id="taskButton" name="task">
+          </li>
+          <li>
+            <label for="Task name"></label>
+            <input type="text" id="taskName" name="task" placeholder="Task name" required>
+          </li>
+          <li>
+            <label for="Description"></label>
+            <input type="text" id="description" name="task" placeholder="Description">
+          </li>
+          <li>
 
-                          </li>
-                          <li>
-                            <input type="date" id="dueDate" name="task">
-                          </li>
-                          <label for="priority-select"></label>
-
-<select name="task" id="priority">
-    <option value="">--Priority--</option>
-    <option value="low">Low</option>
-    <option value="medium">Medium</option>
-    <option value="high">High</option>
-</select>
-                          <li class="button">
-                            <input type="button" value="Add task" id="taskButton" name="task">
-                          </li>
-                          
-                    </ul>
-            </div>
-            </div>
-        
-<div class="footer">Made by Trent. insert github logo</div>
-        
+          </li>
+          <li>
+            <input type="date" id="dueDate" name="task">
+          </li>
+          <label for="priority-select"></label>
+          <select name="task" id="priority">
+            <option value="">Priority</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </ul>
+      </div>
     </div>
-    <script src="main.js" type="module" defer></script>
+    <div class="footer">Made by Trent. insert github logo</div>
+  </div>
+  <script src="main.js" type="module" defer></script>
 </body>
+
 </html>

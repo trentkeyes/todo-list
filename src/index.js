@@ -27,7 +27,7 @@ const displayTodo = () => {
   listItem.appendChild(newTodo);
 
   listItem.todoID = todoData.getNewTodoID();
-  newTodo.textContent = todoData.getNewTodo();
+  newTodo.textContent = todoData.getNewTodoTitle();
   checkbox.addEventListener("click", markComplete);
 };
 
@@ -35,9 +35,9 @@ const markComplete = (e) => {
   const list = document.querySelector(".todo-list");
   const listItem = e.target.parentElement;
   list.removeChild(listItem);
-  // use this idea to edit everything else
+  // use this structure to edit everything else
   todoData.updateTodo(listItem.todoID, (record) => {
-    record.setStatus(true);
+    record.setCompleteStatus = true;
   });
 };
 const addToProject = [];

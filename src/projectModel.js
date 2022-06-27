@@ -1,7 +1,12 @@
-const projectModel = () => {};
+class projectModel {
+  constructor(name) {
+    this.name = name;
+    this.archive = false;
+  }
+  set setArchive(bool) {
+    this.archive = bool;
+  }
+  //maybe set a color, delete, archive
+}
 
 export { projectModel };
-
-//class project model
-
-//set a color, name, delete or not

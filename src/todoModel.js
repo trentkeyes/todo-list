@@ -1,58 +1,38 @@
-import { format, add } from "date-fns";
+import { format } from "date-fns";
 
-const todoModel = (id, title, description, dueDate, priority, projectID) => {
-  const getID = () => {
-    console.log(id);
-    return id;
-  };
-  const setID = (newID) => (id = newID);
-  let complete = false;
-  const getStatus = () => complete;
-  const setStatus = (newStatus) => {
-    complete = newStatus;
-    console.log(complete);
-  };
-
-  const getTitle = () => {
-    console.log(title);
-    return title;
-  };
-  const setTitle = (newTitle) => (title = newTitle);
-  const getDescription = () => description;
-  const setDescription = (newDescription) => (description = newDescription);
-  const getDueDate = () => {
-    dueDate = dueDate.split("-");
-    const formattedDate = format(
-      new Date(dueDate[0], Number(dueDate[1]) - 1, dueDate[2]),
-      "PPPP"
-    );
-    return formattedDate;
-  };
-  const setDueDate = (newDueDate) => (dueDate = newDueDate);
-  const getPriority = () => priority;
-  const setPriority = (newPriority) => (priority = newPriority);
-  const getProjectID = () => projectID;
-  const setProjectID = (newProjectID) => (projectID = newProjectID);
-  //add to prject
-
-  //  const getall formatted Info
-  // might just need getTitle, get everything else, and set functions
-  return {
-    getID,
-    setID,
-    getStatus,
-    setStatus,
-    getTitle,
-    setTitle,
-    getDescription,
-    setDescription,
-    getDueDate,
-    setDueDate,
-    getPriority,
-    setPriority,
-    getProjectID,
-    setProjectID,
-  };
-};
+class todoModel {
+  constructor(id, title, description, dueDate, priority, projectID) {
+    this.id = id;
+    (this.title = title), (this.description = description);
+    this.dueDate = dueDate;
+    (this.priority = priority), (this.projectID = projectID);
+    this.complete = false;
+  }
+  get getDueDate() {
+    const split = this.dueDate.split("-");
+    return format(new Date(split[0], Number(split[1]) - 1, split[2]), "PPPP");
+  }
+  set setID(newID) {
+    this.id = newID;
+  }
+  set setCompleteStatus(newStatus) {
+    this.complete = newStatus;
+  }
+  set setTitle(newTitle) {
+    this.title = newTitle;
+  }
+  set setDescription(newDescription) {
+    this.description = newDescription;
+  }
+  set setDueDate(newDueDate) {
+    this.dueDate = newDueDate;
+  }
+  set setPriority(newPriority) {
+    this.priority = newPriority;
+  }
+  set setProjectID(newProjectID) {
+    this.projectID = newProjectID;
+  }
+}
 
 export { todoModel };

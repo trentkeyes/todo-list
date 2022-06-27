@@ -35,9 +35,11 @@ const markComplete = (e) => {
   const list = document.querySelector(".todo-list");
   const listItem = e.target.parentElement;
   list.removeChild(listItem);
-  todoData.setTodoStatus(listItem.todoID);
+  // use this idea to edit everything else
+  todoData.updateTodo(listItem.todoID, (record) => {
+    record.setStatus(true);
+  });
 };
-
 const addToProject = [];
 
 const addTaskButton = document.querySelector("#taskButton");
@@ -46,3 +48,23 @@ addTaskButton.addEventListener("click", inputTodo);
 //pop up form
 
 //pop up expanded todo info that lets you edit
+
+//add project on side panel
+
+//so it goes inbox, completed, projects, add project
+
+// add select element that loops through the project names for input
+
+//make two directories for data and model
+//record is undefined?
+// const update = (id, action) => {
+//   var record = // get the element by id
+
+//   action(record);
+
+//   // save into database
+// }
+
+// todoData.setTodoStatus(listItem.todoID, function (record) {
+//   record.setTitle("new title");
+// });

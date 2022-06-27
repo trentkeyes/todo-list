@@ -1,16 +1,22 @@
 import { format, add } from "date-fns";
 
-const todoModel = (title, description, dueDate, priority) => {
+const todoModel = (id, title, description, dueDate, priority, projectID) => {
+  const getID = () => {
+    console.log(id);
+    return id;
+  };
+  const setID = (newID) => (id = newID);
   let complete = false;
-  const setStatus = () => {
-    complete ? (complete = false) : (complete = true);
-    //trigger dom event to make task dissapear
-  };
-  const getStatus = () => {
+  const getStatus = () => complete;
+  const setStatus = (newStatus) => {
+    complete = newStatus;
     console.log(complete);
-    return complete;
   };
-  const getTitle = () => title;
+
+  const getTitle = () => {
+    console.log(title);
+    return title;
+  };
   const setTitle = (newTitle) => (title = newTitle);
   const getDescription = () => description;
   const setDescription = (newDescription) => (description = newDescription);
@@ -25,13 +31,16 @@ const todoModel = (title, description, dueDate, priority) => {
   const setDueDate = (newDueDate) => (dueDate = newDueDate);
   const getPriority = () => priority;
   const setPriority = (newPriority) => (priority = newPriority);
+  const getProjectID = () => projectID;
+  const setProjectID = (newProjectID) => (projectID = newProjectID);
   //add to prject
-  
-
 
   //  const getall formatted Info
   // might just need getTitle, get everything else, and set functions
   return {
+    getID,
+    setID,
+    getStatus,
     setStatus,
     getTitle,
     setTitle,
@@ -41,7 +50,8 @@ const todoModel = (title, description, dueDate, priority) => {
     setDueDate,
     getPriority,
     setPriority,
-    getStatus,
+    getProjectID,
+    setProjectID,
   };
 };
 

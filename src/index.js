@@ -57,18 +57,28 @@ const displayProject = (newProject) => {
   projectList.insertBefore(listItem, projectInput);
 };
 
+const addProjectToSelect = (project) => {
+  const projectSelect = document.querySelector("#projectName");
+  const newOption = document.createElement("option");
+  newOption.setAttribute("value", project);
+  newOption.textContent = project;
+  projectSelect.appendChild(newOption);
+};
+
 const addTaskButton = document.querySelector("#taskButton");
 addTaskButton.addEventListener("click", inputTodo);
 
 const addProjectButton = document.querySelector("#projectButton");
 addProjectButton.addEventListener("click", createProject);
 
+export { addProjectToSelect };
+
 //have form pop up to add project
 
 //pop up expanded todo info that lets you edit
 
-//so it goes inbox, completed, projects, add project
-
 // add select element that loops through the project names for input
 
 // add a delete projects button
+
+// have projects sidebar display only associated projects

@@ -18,6 +18,7 @@
     <nav class="nav">
       <ul class="projectList">
         <li><a href="">Inbox</a></li>
+        <li><a href="">Completed</a></li>
         <li class="newProject">
           <label for="New Project"></label>
           <input type="text" id="newProject" name="project" placeholder="New project">
@@ -57,10 +58,12 @@
                 <option value="medium">Medium</option>
                 <option value="high">High</option>
               </select>
-              <li>
-                <label for="Task name"></label>
-                <input type="text" id="projectName" name="task" placeholder="Project name">
               </li>
+              <label for="project-select"></label>
+              <select name="task" id="projectName">
+                <option value="inbox">Inbox</option>
+              </select>
+              <li>
             </ul>
           </div>
         </div>

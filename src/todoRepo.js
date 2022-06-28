@@ -1,5 +1,6 @@
 import { TodoModel } from "./models/todoModel";
 import { ProjectModel } from "./models/projectModel";
+import { addProjectToSelect } from "./index";
 
 //rewrite to be class, change name to todoRepo
 
@@ -27,6 +28,7 @@ const todoRepo = (() => {
   const createProject = (title) => {
     projects.push(new ProjectModel(projectID, title));
     projectID++;
+    addProjectToSelect(title);
   };
   const getTodos = () => {
     console.log(todos);

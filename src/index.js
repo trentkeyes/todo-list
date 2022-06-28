@@ -1,5 +1,9 @@
 import { todoRepo } from "./todoRepo";
 
+const createInboxProject = () => {
+  todoRepo.createProject("Inbox");
+};
+
 const inputTodo = (e) => {
   const taskName = document.querySelector("#taskName").value;
   const description = document.querySelector("#description").value;
@@ -7,10 +11,20 @@ const inputTodo = (e) => {
   const priority = document.querySelector("#priority").value;
   const project = document.querySelector("#projectName").value;
   todoRepo.createTodo(taskName, description, dueDate, priority, project);
-  displayTodo();
+  if (
+    todoRepo.activeProject === todoRepo.getNewTodoProjID ||
+    todoRepo.activeProject === 0
+  ) {
+    displayTodo();
+  }
 };
 
 const displayTodo = () => {
+  //if displayed project === project id, display
+
+  //and not complete
+
+  //make list item with checkbox, add to list
   const list = document.querySelector(".todo-list");
   const listItem = document.createElement("li");
   const checkbox = document.createElement("input");
@@ -36,6 +50,7 @@ const markComplete = (e) => {
   todoRepo.updateTodo(listItem.todoID, (record) => {
     record.setCompleteStatus = true;
   });
+  todoRepo.addCompletedTodo(listItem.todoID);
 };
 
 const createProject = () => {
@@ -75,12 +90,18 @@ const clearList = () => {
 };
 
 const seeProject = (e) => {
-  const project = e.target.id;
-  //clear list
   clearList();
+  const project = e.target.id;
+  let items;
+  if (project === "completed") {
+    items = todoRepo.completedTodos;
+    todoRepo.activeProject = "completed";
+  }
+  if (project !== "completed") {
+    items = todoRepo.findProjectItems(project);
+    todoRepo.activeProject = todoRepo.findProjectID(project);
+  }
 
-  // populate projects for that list
-  const items = todoRepo.findProjectItems(project);
   items.forEach((item) => {
     const list = document.querySelector(".todo-list");
     const listItem = document.createElement("li");
@@ -97,6 +118,10 @@ const seeProject = (e) => {
     listItem.todoID = item.id;
     newTodo.textContent = item.title;
     checkbox.addEventListener("click", markComplete);
+    console.log(item);
+    if (project === "completed") {
+      checkbox.setAttribute("checked", true);
+    }
   });
 };
 
@@ -106,6 +131,15 @@ addTaskButton.addEventListener("click", inputTodo);
 const addProjectButton = document.querySelector("#projectButton");
 addProjectButton.addEventListener("click", createProject);
 
+const inbox = document.querySelector("#Inbox");
+inbox.addEventListener("click", seeProject);
+
+const completed = document.querySelector("#completed");
+completed.addEventListener("click", seeProject);
+//if it's not complete, we display project. If complete... it goes to completed projects
+
+createInboxProject();
+
 export { addProjectToSelect };
 
 //have form pop up to add project
@@ -114,6 +148,8 @@ export { addProjectToSelect };
 
 // add a delete projects button
 
-// have projects sidebar display only associated projects
-
 // add date to quick/insta view
+
+// have inbox and completed show correct projects, change title from"inbox"
+
+// how can I better organize this DOM page?

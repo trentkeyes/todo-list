@@ -36,18 +36,22 @@ const todoRepo = (() => {
   };
   const getNewTodoTitle = () => todos[todos.length - 1].title;
   const getNewTodoID = () => todos[todos.length - 1].id;
+  const getNewTodoProjID = () => todos[todos.length - 1].projectID;
   const updateTodo = (id, action) => {
     const record = todos[id];
     action(record);
   };
-  const findProjectItems = (project) => {
-    //first go to project to find id
+  const findProjectID = (project) => {
     let projID;
     projects.forEach((proj) => {
       if (proj.title === project) {
         projID = proj.id;
       }
     });
+    return projID;
+  };
+  const findProjectItems = (project) => {
+    const projID = findProjectID(project);
     // loop through todo array and get all with that projectID;
     const projItems = [];
     todos.forEach((item) => {
@@ -57,6 +61,11 @@ const todoRepo = (() => {
     });
     return projItems;
   };
+  const addCompletedTodo = (id) => {
+    completedTodos.push(todos[id]);
+  };
+  const completedTodos = [];
+  let activeProject = 0;
 
   return {
     createTodo,
@@ -64,8 +73,13 @@ const todoRepo = (() => {
     getTodos,
     getNewTodoTitle,
     getNewTodoID,
+    getNewTodoProjID,
     updateTodo,
+    findProjectID,
     findProjectItems,
+    addCompletedTodo,
+    completedTodos,
+    activeProject,
   };
 })();
 

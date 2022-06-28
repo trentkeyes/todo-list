@@ -2,7 +2,7 @@ import { TodoModel } from "./models/todoModel";
 import { ProjectModel } from "./models/projectModel";
 import { addProjectToSelect } from "./index";
 
-//rewrite to be class, change name to todoRepo
+//rewrite to be class
 
 const todoRepo = (() => {
   const todos = [];
@@ -40,6 +40,23 @@ const todoRepo = (() => {
     const record = todos[id];
     action(record);
   };
+  const findProjectItems = (project) => {
+    //first go to project to find id
+    let projID;
+    projects.forEach((proj) => {
+      if (proj.title === project) {
+        projID = proj.id;
+      }
+    });
+    // loop through todo array and get all with that projectID;
+    const projItems = [];
+    todos.forEach((item) => {
+      if (item.projectID === projID) {
+        projItems.push(item);
+      }
+    });
+    return projItems;
+  };
 
   return {
     createTodo,
@@ -48,9 +65,8 @@ const todoRepo = (() => {
     getNewTodoTitle,
     getNewTodoID,
     updateTodo,
+    findProjectItems,
   };
 })();
 
 export { todoRepo };
-
-//rename service, repository

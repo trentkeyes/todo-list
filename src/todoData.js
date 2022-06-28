@@ -1,26 +1,30 @@
-import { todoModel } from "./todoModel";
+import { TodoModel } from "./todoModel";
+import { ProjectModel } from "./projectModel";
+
+//rewrite to be class, change name to todoRepo
 
 const todoData = (() => {
   const todos = [];
   let id = 0;
   const projects = ["inbox"];
+  let projectID = 0;
   const createTodo = (title, description, dueDate, priority, project) => {
-    const newTodo = new todoModel(
-      id,
-      title,
-      description,
-      dueDate,
-      priority,
-      project
-    );
-    if (projects.indexOf(project) === -1) {
-      projects.push(project);
+    const newTodo = new TodoModel(id, title, description, dueDate, priority);
+    console.log(project);
+    for (let i = 0; i < projects.length; i++) {
+      if (projects[i].title === project) {
+        newTodo.setProjectID = projects[i].id;
+      }
     }
-    newTodo.setProjectID = projects.indexOf(project);
+    if (newTodo.projectID === undefined) {
+      projects.push(new ProjectModel(projectID, project));
+      newTodo.projectID = projectID;
+      projectID++;
+      //projects have to be created first in the sidebar
+    }
     todos.push(newTodo);
     id++;
     getTodos();
-    console.log(newTodo.getDueDate);
     console.log(projects);
   };
   const getTodos = () => {

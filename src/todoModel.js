@@ -1,6 +1,8 @@
 import { format } from "date-fns";
 
-class todoModel {
+// put into a folder with project model
+
+class TodoModel {
   constructor(id, title, description, dueDate, priority, projectID) {
     this.id = id;
     (this.title = title), (this.description = description);
@@ -35,4 +37,4 @@ class todoModel {
   }
 }
 
-export { todoModel };
+export { TodoModel };

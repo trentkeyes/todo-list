@@ -80,14 +80,14 @@ nav ul {
     padding-left: 2px;
 }
 
-#taskButton {
+.addButton {
     padding: 5px 10px 5px 5px;
     border-radius: 5px;
     border-style: none;
     font-size: 16px;
 }
 
-#taskButton:hover {
+.addButton:hover {
     background-color: hsl(0deg 0% 16%);
     color: rgb(230, 0, 0);
 }
@@ -107,35 +107,4 @@ nav ul {
 .todoText {
     padding-left: 8px;
     background-color: inherit;
-}
-
-/* #taskButton {
-  background-color: #EA4C89;
-  border-radius: 8px;
-  border-style: none;
-  box-sizing: border-box;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 14px;
-  font-weight: 500;
-  height: 40px;
-  line-height: 20px;
-  list-style: none;
-  margin: 0;
-  outline: none;
-  padding: 10px 16px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  transition: color 100ms;
-  vertical-align: baseline;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-} */
-
-.button-1:hover,
-.button-1:focus {
-  background-color: #F082AC;
 }

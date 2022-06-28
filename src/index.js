@@ -1,5 +1,4 @@
-import { todoData } from "./todoData";
-import { format, compareAsc } from "date-fns";
+import { todoRepo } from "./todoRepo";
 
 //dom stuff
 
@@ -9,15 +8,15 @@ const inputTodo = (e) => {
   const dueDate = document.querySelector("#dueDate").value;
   const priority = document.querySelector("#priority").value;
   const project = document.querySelector("#projectName").value;
-  todoData.createTodo(taskName, description, dueDate, priority, project);
+  todoRepo.createTodo(taskName, description, dueDate, priority, project);
   displayTodo();
 };
 
 const displayTodo = () => {
-  const checkbox = document.createElement("input");
-  checkbox.setAttribute("type", "checkbox");
   const list = document.querySelector(".todo-list");
   const listItem = document.createElement("li");
+  const checkbox = document.createElement("input");
+  checkbox.setAttribute("type", "checkbox");
   listItem.classList.add("todoItem");
   const form = document.querySelector(".todo-form");
   list.insertBefore(listItem, form);
@@ -26,8 +25,8 @@ const displayTodo = () => {
   listItem.appendChild(checkbox);
   listItem.appendChild(newTodo);
 
-  listItem.todoID = todoData.getNewTodoID();
-  newTodo.textContent = todoData.getNewTodoTitle();
+  listItem.todoID = todoRepo.getNewTodoID();
+  newTodo.textContent = todoRepo.getNewTodoTitle();
   checkbox.addEventListener("click", markComplete);
 };
 
@@ -36,35 +35,40 @@ const markComplete = (e) => {
   const listItem = e.target.parentElement;
   list.removeChild(listItem);
   // use this structure to edit everything else
-  todoData.updateTodo(listItem.todoID, (record) => {
+  todoRepo.updateTodo(listItem.todoID, (record) => {
     record.setCompleteStatus = true;
   });
 };
-const addToProject = [];
+
+const createProject = () => {
+  const newProject = document.querySelector("#newProject").value;
+  todoRepo.createProject(newProject);
+  displayProject(newProject);
+};
+
+const displayProject = (newProject) => {
+  const projectList = document.querySelector(".projectList");
+  const listItem = document.createElement("li");
+  const listItemA = document.createElement("a");
+  listItemA.setAttribute("href", "");
+  listItemA.textContent = newProject;
+  listItem.appendChild(listItemA);
+  const projectInput = document.querySelector(".newProject");
+  projectList.insertBefore(listItem, projectInput);
+};
 
 const addTaskButton = document.querySelector("#taskButton");
 addTaskButton.addEventListener("click", inputTodo);
 
-//pop up form
+const addProjectButton = document.querySelector("#projectButton");
+addProjectButton.addEventListener("click", createProject);
+
+//have form pop up to add project
 
 //pop up expanded todo info that lets you edit
-
-//add project on side panel
 
 //so it goes inbox, completed, projects, add project
 
 // add select element that loops through the project names for input
 
-//make two directories for data and model
-//record is undefined?
-// const update = (id, action) => {
-//   var record = // get the element by id
-
-//   action(record);
-
-//   // save into database
-// }
-
-// todoData.setTodoStatus(listItem.todoID, function (record) {
-//   record.setTitle("new title");
-// });
+// add a delete projects button

@@ -12,7 +12,7 @@ const inputTodo = (e) => {
   const project = document.querySelector("#projectName").value;
   todoRepo.createTodo(taskName, description, dueDate, priority, project);
   if (
-    todoRepo.activeProject === todoRepo.getNewTodoProjID ||
+    todoRepo.activeProject === todoRepo.getNewTodo.projectID ||
     todoRepo.activeProject === 0
   ) {
     displayTodo();
@@ -37,8 +37,8 @@ const displayTodo = () => {
   listItem.appendChild(checkbox);
   listItem.appendChild(newTodo);
 
-  listItem.todoID = todoRepo.getNewTodoID();
-  newTodo.textContent = todoRepo.getNewTodoTitle();
+  listItem.todoID = todoRepo.getNewTodo.id;
+  newTodo.textContent = todoRepo.getNewTodo.title;
   checkbox.addEventListener("click", markComplete);
 };
 
@@ -93,11 +93,13 @@ const seeProject = (e) => {
   clearList();
   const project = e.target.id;
   let items;
-  if (project === "completed") {
+  const header = document.querySelector(".inbox-header");
+  header.textContent = project;
+  if (project === "Completed") {
     items = todoRepo.completedTodos;
-    todoRepo.activeProject = "completed";
+    todoRepo.activeProject = "Completed";
   }
-  if (project !== "completed") {
+  if (project !== "Completed") {
     items = todoRepo.findProjectItems(project);
     todoRepo.activeProject = todoRepo.findProjectID(project);
   }
@@ -118,9 +120,9 @@ const seeProject = (e) => {
     listItem.todoID = item.id;
     newTodo.textContent = item.title;
     checkbox.addEventListener("click", markComplete);
-    console.log(item);
-    if (project === "completed") {
+    if (project === "Completed") {
       checkbox.setAttribute("checked", true);
+      listItem.classList.add("strikethrough");
     }
   });
 };
@@ -134,7 +136,7 @@ addProjectButton.addEventListener("click", createProject);
 const inbox = document.querySelector("#Inbox");
 inbox.addEventListener("click", seeProject);
 
-const completed = document.querySelector("#completed");
+const completed = document.querySelector("#Completed");
 completed.addEventListener("click", seeProject);
 //if it's not complete, we display project. If complete... it goes to completed projects
 
@@ -150,6 +152,6 @@ export { addProjectToSelect };
 
 // add date to quick/insta view
 
-// have inbox and completed show correct projects, change title from"inbox"
+// don't display completed todos
 
 // how can I better organize this DOM page?

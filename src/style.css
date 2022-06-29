@@ -108,3 +108,8 @@ nav ul {
     padding-left: 8px;
     background-color: inherit;
 }
+
+.strikethrough {
+    text-decoration-line: line-through;
+    text-decoration-thickness: 2px;
+}

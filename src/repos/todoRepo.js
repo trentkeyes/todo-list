@@ -1,5 +1,5 @@
-import { TodoModel } from "/src/models/todoModel";
-import { projectRepo } from "/src/repos/projectRepo";
+import { TodoModel } from '/src/models/todoModel';
+import { projectRepo } from '/src/repos/projectRepo';
 
 class TodoRepo {
   constructor() {
@@ -7,12 +7,21 @@ class TodoRepo {
     this.id = 0;
   }
   createTodo(title, description, dueDate, priority, project) {
-    const todo = new TodoModel(this.id, title, description, dueDate, priority);
-    const projectID = projectRepo.getProjectID(project);
-    todo.setProjectID = projectID;
-    this.todos.push(todo);
-    this.id++;
-    return todo;
+    if (title !== '') {
+      const todo = new TodoModel(
+        this.id,
+        title,
+        description,
+        dueDate,
+        priority
+      );
+      const projectID = projectRepo.getProjectID(project);
+      todo.setProjectID = projectID;
+      this.todos.push(todo);
+      this.id++;
+      console.log(todo);
+      return todo;
+    }
   }
   updateTodo(id, action) {
     const record = this.todos[id];

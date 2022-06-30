@@ -1,5 +1,5 @@
-import { ProjectModel } from "/src/models/projectModel";
-import { todoRepo } from "./todoRepo";
+import { ProjectModel } from '/src/models/projectModel';
+import { todoRepo } from './todoRepo';
 
 class ProjectRepo {
   constructor() {
@@ -7,11 +7,12 @@ class ProjectRepo {
     this.id = 0;
   }
   createProject(title) {
-    // check if proj with same name exists
-    const project = new ProjectModel(this.id, title);
-    this.projects.push(project);
-    this.id++;
-    return project;
+    if (this.isValid(title)) {
+      const project = new ProjectModel(this.id, title);
+      this.projects.push(project);
+      this.id++;
+      return project;
+    }
   }
   getProjectID(title) {
     for (const project of this.projects) {
@@ -25,6 +26,9 @@ class ProjectRepo {
       (item) => item.projectID === id && item.complete === false
     );
     return projectItems;
+  }
+  isValid(title) {
+    return title !== '' && this.getProjectID(title) === undefined;
   }
   get getNewProj() {
     return this.projects[this.projects.length - 1];

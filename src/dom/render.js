@@ -1,23 +1,24 @@
-import { events } from "./events";
-import { todoRepo } from "../repos/todoRepo";
-import { projectRepo } from "../repos/projectRepo";
+import { events } from './events';
+import { todoRepo } from '../repos/todoRepo';
+import { projectRepo } from '../repos/projectRepo';
 
 const render = (() => {
   let renderingProject = 0;
   const getRenderingProject = () => renderingProject || 0;
 
   //shared queried elements object? const domElements
-  const projectHeader = document.querySelector(".inbox-header");
+  const list = document.querySelector('.todo-list');
+  const form = document.querySelector('.todo-form');
+
+  const projectHeader = document.querySelector('.inbox-header');
 
   const renderTodoItem = (item) => {
-    const list = document.querySelector(".todo-list");
-    const form = document.querySelector(".todo-form");
-    const listItem = document.createElement("li");
-    const title = document.createElement("label");
-    const checkbox = document.createElement("input");
-    checkbox.setAttribute("type", "checkbox");
-    listItem.classList.add("todoItem");
-    title.classList.add("todoText");
+    const listItem = document.createElement('li');
+    const title = document.createElement('label');
+    const checkbox = document.createElement('input');
+    checkbox.setAttribute('type', 'checkbox');
+    listItem.classList.add('todoItem');
+    title.classList.add('todoText');
 
     list.insertBefore(listItem, form);
     listItem.appendChild(checkbox);
@@ -26,13 +27,12 @@ const render = (() => {
     listItem.todoID = item.id;
     title.textContent = item.title;
 
-    checkbox.addEventListener("click", events.markComplete);
+    checkbox.addEventListener('click', events.markComplete);
   };
 
   const clearList = () => {
-    const list = document.querySelector(".todo-list");
     Array.from(list.childNodes).forEach((child) => {
-      if (child.nodeName === "LI") {
+      if (child.nodeName === 'LI') {
         list.removeChild(child);
       }
     });
@@ -52,41 +52,53 @@ const render = (() => {
 
   const renderCompletedList = () => {
     const todoList = todoRepo.getCompletedTodos;
-    renderingProject = "Completed";
+    renderingProject = 'Completed';
     clearList();
     todoList.forEach((item) => {
-      renderTodoItem(item);
+      const listItem = document.createElement('li');
+      const title = document.createElement('label');
+      const checkbox = document.createElement('input');
+      checkbox.setAttribute('type', 'checkbox');
+      listItem.classList.add('todoItem');
+      title.classList.add('todoText');
+      checkbox.setAttribute('checked', true);
+      checkbox.setAttribute('disabled', true);
+      listItem.classList.add('strikethrough');
+
+      list.insertBefore(listItem, form);
+      listItem.appendChild(checkbox);
+      listItem.appendChild(title);
+
+      listItem.todoID = item.id;
+      title.textContent = item.title;
     });
-    // add these attributes to the loop
-    // checkbox.setAttribute("checked", true);
-    // listItem.classList.add("strikethrough");
-    projectHeader.textContent = "Completed";
+
+    projectHeader.textContent = 'Completed';
   };
 
-  const renderCompletedItem = (item) => {
-    const list = document.querySelector(".todo-list");
+  const renderRemovedItem = (item) => {
     list.removeChild(item);
   };
 
   const renderProjectTitle = (project) => {
-    const projectList = document.querySelector(".projectList");
-    const projectInput = document.querySelector(".newProject");
-    const listItem = document.createElement("li");
-    const listItemA = document.createElement("a");
-    listItemA.setAttribute("href", "#");
-    listItemA.setAttribute("id", project);
+    const projectList = document.querySelector('.projectList');
+    const projectInput = document.querySelector('.newProject');
+    const listItem = document.createElement('li');
+    const listItemA = document.createElement('a');
+    listItemA.setAttribute('href', '#');
+    listItemA.setAttribute('id', project);
     listItemA.textContent = project;
     listItem.appendChild(listItemA);
     projectList.insertBefore(listItem, projectInput);
-    listItemA.addEventListener("click", renderTodoList);
+    listItemA.addEventListener('click', renderTodoList);
 
     //change selector to the same project
   };
 
   const renderProjectSelect = (project) => {
-    const projectSelect = document.querySelector("#projectName");
-    const newOption = document.createElement("option");
-    newOption.setAttribute("value", project);
+    const projectSelect = document.querySelector('#projectName');
+    const newOption = document.createElement('option');
+    newOption.setAttribute('value', project);
     newOption.textContent = project;
     projectSelect.appendChild(newOption);
   };
@@ -95,7 +107,7 @@ const render = (() => {
     renderTodoItem,
     renderTodoList,
     renderCompletedList,
-    renderCompletedItem,
+    renderRemovedItem,
     renderProjectTitle,
     renderProjectSelect,
   };

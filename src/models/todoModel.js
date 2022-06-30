@@ -1,7 +1,5 @@
 import { format } from "date-fns";
 
-// put into a folder with project model
-
 class TodoModel {
   constructor(id, title, description, dueDate, priority, projectID) {
     this.id = id;

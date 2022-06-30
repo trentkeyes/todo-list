@@ -31,10 +31,4 @@ class TodoRepo {
 
 const todoRepo = new TodoRepo();
 
-// maybe a class called todo render, param is array of todos, inside of it, you will do everything from display todo, with foreach loop
-
-//render element, render list, can use render element inside render list
-
-// get rid of completed project
-
 export { todoRepo };

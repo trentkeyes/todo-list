@@ -3,6 +3,7 @@ class ProjectModel {
     this.id = id;
     this.title = title;
     this.archive = false;
+    // add completed / delete project
   }
   set setID(newID) {
     this.id = newID;

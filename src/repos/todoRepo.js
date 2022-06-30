@@ -1,31 +1,22 @@
 import { TodoModel } from "/src/models/todoModel";
-import { projectRepo } from "./projectRepo";
+import { projectRepo } from "/src/repos/projectRepo";
 
 class TodoRepo {
   constructor() {
     this.todos = [];
     this.id = 0;
-    this.activeProject = 0;
-    this.completedTodos = [];
   }
   createTodo(title, description, dueDate, priority, project) {
     const todo = new TodoModel(this.id, title, description, dueDate, priority);
-    let projectID = projectRepo.getProjectID(project);
-    if (projectID === undefined) {
-      projectID = projectRepo.createProject(project);
-    }
+    const projectID = projectRepo.getProjectID(project);
     todo.setProjectID = projectID;
     this.todos.push(todo);
     this.id++;
-    console.log(this.todos);
-    console.log(projectRepo.projects);
+    return todo;
   }
   updateTodo(id, action) {
     const record = this.todos[id];
     action(record);
-  }
-  get getNewTodo() {
-    return this.todos[this.todos.length - 1];
   }
   get getCompletedTodos() {
     const completed = [];

@@ -1,36 +1,30 @@
 import { ProjectModel } from "/src/models/projectModel";
 import { todoRepo } from "./todoRepo";
-import { addProjectToSelect } from "/src/dom/events";
 
 class ProjectRepo {
   constructor() {
     this.projects = [];
     this.id = 0;
-    this.activeProject = 0;
   }
   createProject(title) {
+    // check if proj with same name exists
     const project = new ProjectModel(this.id, title);
     this.projects.push(project);
     this.id++;
-    // addProjectToSelect(title);
-    return project.id;
+    return project;
   }
   getProjectID(title) {
-    this.projects.forEach((project) => {
-      if (project.title === title) {
+    for (const project of this.projects) {
+      if (title === project.title) {
         return project.id;
       }
-    });
+    }
   }
-  getProjectItems(title) {
-    const projID = this.getProjectID(title);
-    const projItems = [];
-    todoRepo.todos.forEach((item) => {
-      if (item.projectID === projID) {
-        projItems.push(item);
-      }
-    });
-    return projItems;
+  getProjectItems(id) {
+    const projectItems = todoRepo.todos.filter(
+      (item) => item.projectID === id && item.complete === false
+    );
+    return projectItems;
   }
   get getNewProj() {
     return this.projects[this.projects.length - 1];

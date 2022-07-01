@@ -7,5 +7,3 @@ import { events } from './dom/events';
 // add a delete projects button
 
 // add date to quick/insta view
-
-// don't allow adding if title of project or todo is empty

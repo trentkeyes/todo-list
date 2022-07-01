@@ -113,3 +113,14 @@ nav ul {
     text-decoration-line: line-through;
     text-decoration-thickness: 2px;
 }
+
+.todo-popup {
+    width: 400px;
+    height: 70%;
+    background-color: blue;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    visibility: hidden;
+}

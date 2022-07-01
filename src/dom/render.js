@@ -6,7 +6,6 @@ const render = (() => {
   let renderingProject = 0;
   const getRenderingProject = () => renderingProject || 0;
 
-  //shared queried elements object? const domElements
   const list = document.querySelector('.todo-list');
   const form = document.querySelector('.todo-form');
 
@@ -91,8 +90,6 @@ const render = (() => {
     listItem.appendChild(listItemA);
     projectList.insertBefore(listItem, projectInput);
     listItemA.addEventListener('click', renderTodoList);
-
-    //change selector to the same project
   };
 
   const renderProjectSelect = (project) => {

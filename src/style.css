@@ -62,11 +62,19 @@ body {
 .footer,
 li,
 a {
-    background-color: hsl(0deg 0% 14%)
+    background-color: hsl(0deg 0% 14%);
 }
 
-.todo-form li {
-    background-color: hsl(0deg 0% 12%);
+a {
+    cursor: pointer;
+}
+
+.projectList li {
+    background-color: hsl(0deg 0% 14%);
+}
+
+li {
+    background-color: hsl(0deg 0% 14%);
 }
 
 nav ul {
@@ -80,14 +88,14 @@ nav ul {
     padding-left: 2px;
 }
 
-.addButton {
+.button {
     padding: 5px 10px 5px 5px;
     border-radius: 5px;
     border-style: none;
     font-size: 16px;
 }
 
-.addButton:hover {
+.button:hover {
     background-color: hsl(0deg 0% 16%);
     color: rgb(230, 0, 0);
 }
@@ -114,13 +122,54 @@ nav ul {
     text-decoration-thickness: 2px;
 }
 
-.todo-popup {
-    width: 400px;
-    height: 70%;
-    background-color: blue;
+.details-popup {
+    width: 50%;
+    height: 80%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     visibility: hidden;
+    padding: 20px;
+    background-color: hsl(0deg 0% 14%);
+    border-radius: 5px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, .2);
+
 }
+
+.open-popup {
+    visibility: visible;
+}
+
+input {
+    /* border: 1px solid #E5E7EB; */
+    background-color: hsl(0deg 0% 14%);
+    border: 1px solid hsl(0deg 0% 12%);
+    border-radius: 3px;
+    padding: 7px;
+    font-size: 14px;
+}
+
+input:focus {
+    /* border: 1px solid #00678e; */
+    box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+    outline: none;
+  }
+
+  .save {
+      padding: 5px 10px;
+      background-color: rgba(175, 1, 1, 0.959);
+  }
+
+  .save:hover {
+      background-color: rgb(139, 0, 0);
+      color: white;
+  }
+
+  select {
+      padding: 5px;
+      border: none;
+      outline: none;
+      background-color: hsl(0deg 0% 14%);
+  }
+

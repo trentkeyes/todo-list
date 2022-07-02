@@ -26,6 +26,7 @@ const render = (() => {
     listItem.todoID = item.id;
     title.textContent = item.title;
 
+    listItem.addEventListener('click', renderDetailsPopup);
     checkbox.addEventListener('click', events.markComplete);
   };
 
@@ -99,6 +100,14 @@ const render = (() => {
     newOption.textContent = project;
     projectSelect.appendChild(newOption);
   };
+
+  //put in events and rename popup details?
+  const renderDetailsPopup = (e) => {
+    const detailsPopup = document.querySelector('#detailsPopup');
+    detailsPopup.classList.add('open-popup');
+  };
+
+  //renderpopupdetails... find details populate details popup with info
   return {
     getRenderingProject,
     renderTodoItem,

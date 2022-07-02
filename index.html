@@ -24,7 +24,7 @@
           <input type="text" id="newProject" name="project" placeholder="New project">
         </li>
         <li>
-          <input type="button" value="+ Add project" id="projectButton" class="addButton" name="project">
+          <input type="button" value="+ Add project" id="projectButton" class="button" name="project">
         </li>
       </ul>
     </nav>
@@ -34,17 +34,20 @@
         <div class="todo-list">
           <div class="todo-form">
             <ul>
+
               <li>
-                <input type="button" value="+ Add task" id="taskButton" class="addButton" name="task">
+                <input type="button" value="+ Add task" id="taskButton" class="button" name="task">
               </li>
-              <li>
-                <label for="Task name"></label>
-                <input type="text" id="taskName" name="task" placeholder="Task name">
-              </li>
-              <li>
-                <label for="Description"></label>
-                <input type="text" id="description" name="task" placeholder="Description">
-              </li>
+              <div class="name-description-input">
+                <li>
+                  <label for="Task name"></label>
+                  <input type="text" id="taskName" name="task" placeholder="Task name">
+                </li>
+                <li>
+                  <label for="Description"></label>
+                  <input type="text" id="description" name="task" placeholder="Description">
+                </li>
+              </div>
               <li>
 
               </li>
@@ -69,11 +72,9 @@
       </div>
     </div>
     <footer class="footer">Made by Trent. insert github logo</footer>
-    <div class="todo-popup">
+    <div class="details-popup" id="detailsPopup">
       <ul>
-        <li>
-          <input type="button" value="+ Add task" id="taskButton" class="addButton" name="task">
-        </li>
+
         <li>
           <label for="Task name"></label>
           <input type="text" id="taskName" name="task" placeholder="Task name">
@@ -88,18 +89,23 @@
         <li>
           <input type="date" id="dueDate" name="task">
         </li>
-        <label for="priority-select"></label>
-        <select name="task" id="priority">
-          <option value="">Priority</option>
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
-        </select>
-        </li>
-        <label for="project-select"></label>
-        <select name="task" id="projectName">
-        </select>
         <li>
+          <label for="priority-select"></label>
+          <select name="task" id="priority">
+            <option value="">Priority</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </li>
+        <li>
+          <label for="project-select"></label>
+          <select name="task" id="projectName">
+          </select>
+        </li>
+        <li>
+          <input type="button" value="Save" id="saveButton" class="button save">
+        </li>
       </ul>
     </div>
   </div>

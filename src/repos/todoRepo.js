@@ -5,7 +5,7 @@ class TodoRepo {
   constructor() {
     this.todos = [];
     this.id = 0;
-    this.activeTodo;
+    this.activeTodo = null;
   }
   createTodo(title, description, dueDate, priority, project) {
     if (title !== '') {

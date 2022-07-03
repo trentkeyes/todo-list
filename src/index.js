@@ -1,6 +1,6 @@
 import { events } from './dom/events';
 
-// form should be populated with old info if it's been created
+// form should be populated with old info if it's been created (including project)
 
 // add a delete projects button
 
@@ -9,3 +9,4 @@ import { events } from './dom/events';
 // figure out how to save data
 
 // don't create another todo if it exists
+

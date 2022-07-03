@@ -121,22 +121,30 @@ const render = (() => {
     detailsPopup.classList.remove('open-popup');
   };
 
+  const taskName = document.querySelector('#taskName');
+  const description = document.querySelector('#description');
+  const dueDate = document.querySelector('#dueDate');
+  const priority = document.querySelector('#priority');
+  const project = document.querySelector('#projectName');
+
   const renderPreviousDetails = (id) => {
     const todo = todoRepo.todos[id];
 
-    const taskName = document.querySelector('#taskName');
-    const description = document.querySelector('#description');
-    const dueDate = document.querySelector('#dueDate');
-    const priority = document.querySelector('#priority');
-    const project = document.querySelector('#projectName');
     taskName.value = todo.title;
     description.value = todo.description;
     dueDate.value = todo.dueDate;
     priority.value = todo.priority;
     // project.value = projectID;
     // get project name from id
+  };
 
-    
+  const resetForm = () => {
+    render.closeDetailsPopup();
+    taskName.value = '';
+    description.value = '';
+    dueDate.value = '';
+    priority.value = '';
+    project.value = 'Inbox';
   };
 
   return {
@@ -149,6 +157,7 @@ const render = (() => {
     renderProjectSelect,
     renderDetailsPopup,
     closeDetailsPopup,
+    resetForm,
   };
 })();
 

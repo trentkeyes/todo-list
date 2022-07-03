@@ -3,6 +3,12 @@ import { projectRepo } from '../repos/projectRepo';
 import { render } from './render';
 
 const events = (() => {
+  const taskName = document.querySelector('#taskName');
+  const description = document.querySelector('#description');
+  const dueDate = document.querySelector('#dueDate');
+  const priority = document.querySelector('#priority');
+  const project = document.querySelector('#projectName');
+
   const createInboxProject = () => {
     projectRepo.createProject('Inbox');
     render.renderProjectSelect('Inbox');
@@ -13,11 +19,6 @@ const events = (() => {
       updateTodo();
       return;
     }
-    const taskName = document.querySelector('#taskName');
-    const description = document.querySelector('#description');
-    const dueDate = document.querySelector('#dueDate');
-    const priority = document.querySelector('#priority');
-    const project = document.querySelector('#projectName');
     const item = todoRepo.createTodo(
       taskName.value,
       description.value,
@@ -28,16 +29,23 @@ const events = (() => {
     if (item && render.getRenderingProject() === item.projectID) {
       render.renderTodoItem(item);
     }
-    taskName.value = '';
-    description.value = '';
-    dueDate.value = '';
-    priority.value = '';
-    project.value = 'Inbox';
-    render.closeDetailsPopup();
+    render.resetForm();
   };
 
-   // events.updateTodo(id);
+  // events.updateTodo(id);
   // after... todoRepo.activeTodo = null;
+
+  const updateTodo = () => {
+    todoRepo.updateTodo(todoRepo.activeTodo, (record) => {
+      record.setTitle = taskName.value;
+      record.setDescription = description.value;
+      record.setDueDate = dueDate.value;
+      record.setPriority = priority.value;
+      record.setProjectID = projectRepo.getProjectID(project.value);
+      console.log(record);
+    });
+    render.resetForm();
+  };
 
   const createProject = () => {
     const title = document.querySelector('#newProject');
@@ -57,8 +65,6 @@ const events = (() => {
       record.setCompleteStatus = true;
     });
   };
-
- 
 
   const addTaskButton = document.querySelector('#taskButton');
   addTaskButton.addEventListener('click', render.renderDetailsPopup);

@@ -75,11 +75,16 @@
       <ul class="detailsGrid">
         <li class="gridTaskName">
           <label for="Task name"></label>
-          <input type="text" id="taskName" name="task" placeholder="Task name">
+          <input type="text" id="taskName" name="task" placeholder="Task name" size="25">
         </li>
+        <li class="gridClose">
+          <label for="Close details window"></label>
+          <input type="button" value="Close" id="closeButton" class="button close">
+        </li>
+
         <li class="gridDescription">
           <label for="Description"></label>
-          <input type="text" id="description" name="task" placeholder="Description">
+          <textarea name="" id="description" cols="25" rows="3" placeholder="Description"></textarea>
         </li>
         <li>
 
@@ -101,7 +106,7 @@
           <select name="task" id="projectName">
           </select>
         </li>
-        <li>
+        <li class="gridSave">
           <input type="button" value="Save" id="saveButton" class="button save">
         </li>
       </ul>

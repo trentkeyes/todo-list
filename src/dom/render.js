@@ -102,10 +102,14 @@ const render = (() => {
   };
 
   //put in events and rename popup details?
-  const renderDetailsPopup = (e) => {
+  const renderDetailsPopup = () => {
     const detailsPopup = document.querySelector('#detailsPopup');
     detailsPopup.classList.add('open-popup');
+  };
 
+  const closeDetailsPopup = () => {
+    const detailsPopup = document.querySelector('#detailsPopup');
+    detailsPopup.classList.remove('open-popup');
   };
 
   //renderpopupdetails... find details populate details popup with info
@@ -118,6 +122,7 @@ const render = (() => {
     renderProjectTitle,
     renderProjectSelect,
     renderDetailsPopup,
+    closeDetailsPopup,
   };
 })();
 

@@ -1,9 +1,13 @@
 import { events } from './dom/events';
 
-//have form pop up to add project
+//add event handlers to take in all info from form
 
-//pop up expanded todo info that lets you edit
+// add event handler to close button
+
+// form should be populated with old info if it's been created
+
+// fix issue where checkbox opens popup form
 
 // add a delete projects button
 
-// add date to quick/insta view
+// add date, priority (with color style), description to quick/insta view

@@ -60,6 +60,9 @@ const events = (() => {
   const completed = document.querySelector('#Completed');
   completed.addEventListener('click', render.renderCompletedList);
 
+  const closeButton = document.querySelector('#closeButton');
+  closeButton.addEventListener('click', render.closeDetailsPopup);
+
   createInboxProject();
 
   return {

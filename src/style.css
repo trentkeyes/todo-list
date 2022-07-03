@@ -72,10 +72,6 @@ a {
     cursor: pointer;
 }
 
-.projectList li {
-    background-color: hsl(0deg 0% 14%);
-}
-
 .todoList-wrapper {
     min-width: 800px;
 }
@@ -88,10 +84,6 @@ a {
     font-size: 22px;
     padding-bottom: 5px;
     padding-left: 2px;
-}
-
-.todo-form {
-    visibility: visible;
 }
 
 .button {
@@ -129,10 +121,10 @@ a {
 }
 
 .details-popup {
-    width: 50%;
-    height: 70%;
+    width: 500px;
+    height: 200px;
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     visibility: hidden;
@@ -150,14 +142,26 @@ a {
 .detailsGrid {
     display: grid;
     grid-template-areas:
-        "title project"
-        "description date"
-        ".... priority";
-    grid-template-columns: 3fr 1fr;
+        "title project close"
+        "description date ."
+        "description priority ."
+        "save . .";
+    grid-template-columns: 1fr 1fr auto;
+    background-color: hsl(0deg 0% 14%);
+}
+
+.detailsGrid li {
+    background-color: hsl(0deg 0% 14%);
+    padding: 5px;
+
 }
 
 .gridTaskName {
     grid-area: title;
+}
+
+.gridClose {
+    grid-area: close;
 }
 
 .gridDescription {
@@ -176,16 +180,21 @@ a {
     grid-area: project;
 }
 
-input {
+.gridSave {
+    grid-area: save;
+}
+
+input, textarea {
     /* border: 1px solid #E5E7EB; */
     background-color: hsl(0deg 0% 14%);
     border: 1px solid hsl(0deg 0% 12%);
     border-radius: 3px;
     padding: 7px;
     font-size: 14px;
+    resize: none;
 }
 
-input:focus {
+input:focus, textarea:focus {
     /* border: 1px solid #00678e; */
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
     outline: none;

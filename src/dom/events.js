@@ -9,6 +9,10 @@ const events = (() => {
   };
 
   const inputTodo = () => {
+    if (todoRepo.activeTodo !== null) {
+      updateTodo();
+      return;
+    }
     const taskName = document.querySelector('#taskName');
     const description = document.querySelector('#description');
     const dueDate = document.querySelector('#dueDate');
@@ -26,8 +30,14 @@ const events = (() => {
     }
     taskName.value = '';
     description.value = '';
+    dueDate.value = '';
     priority.value = '';
+    project.value = 'Inbox';
+    render.closeDetailsPopup();
   };
+
+   // events.updateTodo(id);
+  // after... todoRepo.activeTodo = null;
 
   const createProject = () => {
     const title = document.querySelector('#newProject');
@@ -48,11 +58,16 @@ const events = (() => {
     });
   };
 
+ 
+
   const addTaskButton = document.querySelector('#taskButton');
   addTaskButton.addEventListener('click', render.renderDetailsPopup);
 
   const addProjectButton = document.querySelector('#projectButton');
   addProjectButton.addEventListener('click', createProject);
+
+  const saveButton = document.querySelector('#saveButton');
+  saveButton.addEventListener('click', inputTodo);
 
   const inbox = document.querySelector('#Inbox');
   inbox.addEventListener('click', render.renderTodoList);

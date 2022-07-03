@@ -33,7 +33,6 @@ body {
     display: flex;
     justify-content: center;
     background-color: hsl(0deg 0% 14%);
-
 }
 
 .main {
@@ -223,6 +222,8 @@ select {
     border: 3px solid hsl(0deg 0% 14%);
     border-top: 0px;
     border-bottom: 0px;
+    display: flex;
+    flex-direction: column;
 }
 
 .projectList li {
@@ -243,4 +244,8 @@ select {
 
 .projectList li input {
     margin-left: -5px;
+}
+
+.completed {
+    margin-top: auto;
 }

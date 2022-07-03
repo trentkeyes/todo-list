@@ -5,6 +5,7 @@ class TodoRepo {
   constructor() {
     this.todos = [];
     this.id = 0;
+    this.activeTodo;
   }
   createTodo(title, description, dueDate, priority, project) {
     if (title !== '') {
@@ -27,6 +28,7 @@ class TodoRepo {
     const record = this.todos[id];
     action(record);
   }
+
   get getCompletedTodos() {
     const completed = [];
     this.todos.forEach((item) => {

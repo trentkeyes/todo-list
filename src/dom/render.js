@@ -26,8 +26,8 @@ const render = (() => {
     listItem.todoID = item.id;
     title.textContent = item.title;
 
-    listItem.addEventListener('click', renderDetailsPopup);
     checkbox.addEventListener('click', events.markComplete);
+    listItem.addEventListener('click', renderDetailsPopup);
   };
 
   const clearList = () => {
@@ -72,7 +72,6 @@ const render = (() => {
       listItem.todoID = item.id;
       title.textContent = item.title;
     });
-
     projectHeader.textContent = 'Completed';
   };
 
@@ -102,7 +101,17 @@ const render = (() => {
   };
 
   //put in events and rename popup details?
-  const renderDetailsPopup = () => {
+  const renderDetailsPopup = (e) => {
+    if (e.target.type === 'checkbox') {
+      return;
+    }
+    const previousTodo = e.target.todoID;
+    if (previousTodo || previousTodo === 0) {
+      todoRepo.activeTodo = previousTodo;
+      console.log(todoRepo);
+      renderPreviousDetails(previousTodo);
+    }
+
     const detailsPopup = document.querySelector('#detailsPopup');
     detailsPopup.classList.add('open-popup');
   };
@@ -112,7 +121,24 @@ const render = (() => {
     detailsPopup.classList.remove('open-popup');
   };
 
-  //renderpopupdetails... find details populate details popup with info
+  const renderPreviousDetails = (id) => {
+    const todo = todoRepo.todos[id];
+
+    const taskName = document.querySelector('#taskName');
+    const description = document.querySelector('#description');
+    const dueDate = document.querySelector('#dueDate');
+    const priority = document.querySelector('#priority');
+    const project = document.querySelector('#projectName');
+    taskName.value = todo.title;
+    description.value = todo.description;
+    dueDate.value = todo.dueDate;
+    priority.value = todo.priority;
+    // project.value = projectID;
+    // get project name from id
+
+    
+  };
+
   return {
     getRenderingProject,
     renderTodoItem,

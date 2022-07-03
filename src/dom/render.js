@@ -134,8 +134,7 @@ const render = (() => {
     description.value = todo.description;
     dueDate.value = todo.dueDate;
     priority.value = todo.priority;
-    // project.value = projectID;
-    // get project name from id
+    project.value = projectRepo.projects[todo.projectID].title;
   };
 
   const resetForm = () => {

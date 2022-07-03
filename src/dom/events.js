@@ -49,7 +49,7 @@ const events = (() => {
   };
 
   const addTaskButton = document.querySelector('#taskButton');
-  addTaskButton.addEventListener('click', inputTodo);
+  addTaskButton.addEventListener('click', render.renderDetailsPopup);
 
   const addProjectButton = document.querySelector('#projectButton');
   addProjectButton.addEventListener('click', createProject);

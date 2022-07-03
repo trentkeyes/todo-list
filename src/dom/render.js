@@ -105,6 +105,7 @@ const render = (() => {
   const renderDetailsPopup = (e) => {
     const detailsPopup = document.querySelector('#detailsPopup');
     detailsPopup.classList.add('open-popup');
+
   };
 
   //renderpopupdetails... find details populate details popup with info
@@ -116,6 +117,7 @@ const render = (() => {
     renderRemovedItem,
     renderProjectTitle,
     renderProjectSelect,
+    renderDetailsPopup,
   };
 })();
 

@@ -366,7 +366,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _src_dom_events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../src/dom/events */ \"./src/dom/events.js\");\n\n\n// figure out how to save data\n\n// fix styling on modified todos\n\n// create a flex box for date and priority\n\n// new js application\n\n// priority isn't getting added\n\n// add github logo\n\n//rename repo / project with lower case\n\n// coulc reate a parameter to configure application\n\n//current project id param\n\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _src_dom_events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../src/dom/events */ \"./src/dom/events.js\");\n\n\n// figure out how to save data\n\n// fix styling on modified todos\n\n// create a flex box for date and priority\n\n// priority isn't getting added\n\n// add github logo\n\n//rename repo / project with lower case\n\n// new js application\n\n// could create a parameter to configure application\n\n//current project id param\n\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
 
 /***/ }),
 

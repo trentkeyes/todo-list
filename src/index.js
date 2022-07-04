@@ -6,14 +6,14 @@ import { events } from '/src/dom/events';
 
 // create a flex box for date and priority
 
-// new js application
-
 // priority isn't getting added
 
 // add github logo
 
 //rename repo / project with lower case
 
-// coulc reate a parameter to configure application
+// new js application
+
+// could create a parameter to configure application
 
 //current project id param

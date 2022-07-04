@@ -7,3 +7,7 @@ import { events } from './dom/events';
 // make update list item render new info
 
 // add a delete projects button
+
+// Name   .... Priority (red, yellow, blue)
+// description
+// date

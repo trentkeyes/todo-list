@@ -15,16 +15,48 @@ const render = (() => {
     const listItem = document.createElement('li');
     const title = document.createElement('label');
     const checkbox = document.createElement('input');
+    const priority = document.createElement('p');
+    const dueDate = document.createElement('p');
+    const description = document.createElement('p');
     checkbox.setAttribute('type', 'checkbox');
+    checkbox.classList.add('checkbox');
     listItem.classList.add('todoItem');
     title.classList.add('todoText');
+    priority.classList.add('priorityText');
+    description.classList.add('descriptionText');
+    dueDate.classList.add('dueDateText');
 
     list.insertBefore(listItem, form);
     listItem.appendChild(checkbox);
     listItem.appendChild(title);
+    listItem.appendChild(priority);
+    listItem.appendChild(description);
+    listItem.appendChild(dueDate);
 
     listItem.todoID = item.id;
     title.textContent = item.title;
+    description.textContent = item.description;
+    if (dueDate) {
+      dueDate.textContent = `${item.getDueDate}`;
+    }
+
+    console.log(item.priority);
+    if (item.priority) {
+      switch (item.priority) {
+        case 'low':
+          priority.textContent = 'Low priority';
+          priority.classList.add('lowPriority');
+          break;
+        case 'medium':
+          priority.textContent = 'Medium priority';
+          priority.classList.add('mediumPriority');
+          break;
+        case 'high':
+          priority.textContent = 'High priority';
+          priority.classList.add('highPriority');
+          break;
+      }
+    }
 
     checkbox.addEventListener('click', events.markComplete);
     listItem.addEventListener('click', renderDetailsPopup);
@@ -135,6 +167,16 @@ const render = (() => {
     dueDate.value = todo.dueDate;
     priority.value = todo.priority;
     project.value = projectRepo.projects[todo.projectID].title;
+  };
+
+  const renderModifiedTodo = (id) => {
+    const todoItems = Array.from(document.querySelectorAll('.todoItem'));
+    for (const item of todoItems) {
+      if (item.todoID === id) {
+        console.log('this item');
+        //class todoText, class todoItem
+      }
+    }
   };
 
   const resetForm = () => {

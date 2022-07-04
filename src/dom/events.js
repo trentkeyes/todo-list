@@ -36,14 +36,21 @@ const events = (() => {
   // after... todoRepo.activeTodo = null;
 
   const updateTodo = () => {
-    todoRepo.updateTodo(todoRepo.activeTodo, (record) => {
+    const todoID = todoRepo.activeTodo;
+    todoRepo.updateTodo(todoID, (record) => {
       record.setTitle = taskName.value;
       record.setDescription = description.value;
       record.setDueDate = dueDate.value;
       record.setPriority = priority.value;
       record.setProjectID = projectRepo.getProjectID(project.value);
-      console.log(record);
     });
+    if (todoRepo.todos[todoID].projectID === render.getRenderingProject()) {
+      //render modified todo
+      //loop through children of ul
+      // find todoID, edit that element
+      console.log('hiiii');
+    }
+    // find the list item by id to edit
     render.resetForm();
   };
 
@@ -60,7 +67,6 @@ const events = (() => {
   const markComplete = (e) => {
     const item = e.target.parentElement;
     render.renderRemovedItem(item);
-    // use this structure to edit everything else
     todoRepo.updateTodo(item.todoID, (record) => {
       record.setCompleteStatus = true;
     });

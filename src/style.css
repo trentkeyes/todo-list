@@ -98,20 +98,66 @@ a {
 }
 
 .todoItem {
-    padding: 10px 0px 10px 5px;
+    padding: 10px 0px 0px 5px;
     background-color: hsl(0deg 0% 12%);
     border-radius: 2px;
-    border-bottom: 1px solid rgba(219, 219, 219, 0.432)
+    border-bottom: 1px solid rgba(219, 219, 219, 0.432);
+    display: grid;
+    grid-template-areas:
+        ". priority"
+        "checkbox title"
+        ". description"
+        ". dueDate";
+    grid-template-columns: auto 1fr;
+    column-gap: 1rem;
+    row-gap: .5rem;
+
 }
 
 .todoItem:hover {
     background-color: hsl(0deg 0% 16%);
 }
 
+.checkbox {
+    grid-area: checkbox;
+}
 
 .todoText {
-    padding-left: 8px;
+    grid-area: title;
     background-color: inherit;
+    font-size: 24px;
+}
+
+.priorityText {
+    grid-area: priority;
+    background-color: inherit;
+    font-size: 14px;
+}
+
+.highPriorirty {
+    color: red;
+}
+
+.mediumPriority {
+    color: yellow;
+}
+
+.lowPriority {
+    color: green;
+}
+
+.descriptionText {
+    grid-area: description;
+    background-color: inherit;
+    font-size: 14px;
+}
+
+.dueDateText {
+    grid-area: dueDate;
+    background-color: inherit;
+    color: rgb(235, 37, 159);
+    padding-bottom: 5px;
+    font-size: 14px;
 }
 
 .strikethrough {

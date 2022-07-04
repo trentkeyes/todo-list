@@ -1,13 +1,5 @@
-import { events } from './dom/events';
-
-// add date, priority (with color style), description to quick/insta view
-
 // figure out how to save data
 
-// make update list item render new info
+// fix styling on modified todos
 
-// add a delete projects button
-
-// Name   .... Priority (red, yellow, blue)
-// description
-// date
+// create a flex box for date and priority

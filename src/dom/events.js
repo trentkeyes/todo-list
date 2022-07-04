@@ -32,9 +32,6 @@ const events = (() => {
     render.resetForm();
   };
 
-  // events.updateTodo(id);
-  // after... todoRepo.activeTodo = null;
-
   const updateTodo = () => {
     const todoID = todoRepo.activeTodo;
     todoRepo.updateTodo(todoID, (record) => {
@@ -45,12 +42,9 @@ const events = (() => {
       record.setProjectID = projectRepo.getProjectID(project.value);
     });
     if (todoRepo.todos[todoID].projectID === render.getRenderingProject()) {
-      //render modified todo
-      //loop through children of ul
-      // find todoID, edit that element
-      console.log('hiiii');
+      render.renderModifiedTodo(todoID);
     }
-    // find the list item by id to edit
+    todoRepo.activeTodo = null;
     render.resetForm();
   };
 

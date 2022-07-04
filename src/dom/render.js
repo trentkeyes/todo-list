@@ -36,11 +36,9 @@ const render = (() => {
     listItem.todoID = item.id;
     title.textContent = item.title;
     description.textContent = item.description;
-    if (dueDate) {
+    if (item.dueDate) {
       dueDate.textContent = `${item.getDueDate}`;
     }
-
-    console.log(item.priority);
     if (item.priority) {
       switch (item.priority) {
         case 'low':
@@ -173,8 +171,16 @@ const render = (() => {
     const todoItems = Array.from(document.querySelectorAll('.todoItem'));
     for (const item of todoItems) {
       if (item.todoID === id) {
-        console.log('this item');
+        const todo = todoRepo.todos[id];
+        const elements = item.children;
+
+        elements[1].textContent = todo.title;
+        elements[2].textContent = todo.priority;
+        elements[3].textContent = todo.description;
+        elements[4].textContent = todo.dueDate;
+        console.log(elements);
         //class todoText, class todoItem
+        // { 0: input.checkbox, 1: label.todoText, 2: p.priorityText, 3: p.descriptionText, 4: p.dueDateText, length: 5 }
       }
     }
   };
@@ -199,6 +205,7 @@ const render = (() => {
     renderDetailsPopup,
     closeDetailsPopup,
     resetForm,
+    renderModifiedTodo,
   };
 })();
 

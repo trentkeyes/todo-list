@@ -98,17 +98,18 @@ a {
 }
 
 .todoItem {
-    padding: 10px 0px 0px 5px;
+    padding: 10px 0px 5px 5px;
     background-color: hsl(0deg 0% 12%);
     border-radius: 2px;
     border-bottom: 1px solid rgba(219, 219, 219, 0.432);
     display: grid;
     grid-template-areas:
-        ". priority"
-        "checkbox title"
-        ". description"
-        ". dueDate";
-    grid-template-columns: auto 1fr;
+    
+        "checkbox title ."
+        ". description ."
+        ". dueDate priority";
+        
+    grid-template-columns: auto auto 1fr;
     column-gap: 1rem;
     row-gap: .5rem;
 
@@ -122,6 +123,10 @@ a {
     grid-area: checkbox;
 }
 
+.todoItem {
+    background-color: maroon;
+}
+
 .todoText {
     grid-area: title;
     background-color: inherit;
@@ -132,10 +137,11 @@ a {
     grid-area: priority;
     background-color: inherit;
     font-size: 14px;
+    font-weight: 700;
 }
 
-.highPriorirty {
-    color: red;
+.highPriority {
+   color: red;
 }
 
 .mediumPriority {
@@ -158,6 +164,7 @@ a {
     color: rgb(235, 37, 159);
     padding-bottom: 5px;
     font-size: 14px;
+    font-weight: 700;
 }
 
 .strikethrough {

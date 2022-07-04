@@ -11,7 +11,7 @@ const render = (() => {
 
   const projectHeader = document.querySelector('.inbox-header');
 
-  const renderTodoItem = (item) => {
+  const renderTodoItem = (todo) => {
     const listItem = document.createElement('li');
     const title = document.createElement('label');
     const checkbox = document.createElement('input');
@@ -33,31 +33,35 @@ const render = (() => {
     listItem.appendChild(description);
     listItem.appendChild(dueDate);
 
-    listItem.todoID = item.id;
-    title.textContent = item.title;
-    description.textContent = item.description;
-    if (item.dueDate) {
-      dueDate.textContent = `${item.getDueDate}`;
+    checkbox.addEventListener('click', events.markComplete);
+    listItem.addEventListener('click', renderDetailsPopup);
+
+    listItem.todoID = todo.id;
+    fillItemDetails(todo, title, priority, description, dueDate);
+  };
+
+  const fillItemDetails = (todo, title, priority, description, dueDate) => {
+    title.textContent = todo.title;
+    description.textContent = todo.description;
+    if (todo.dueDate) {
+      dueDate.textContent = `${todo.getDueDate}`;
     }
-    if (item.priority) {
-      switch (item.priority) {
-        case 'low':
+    if (todo.priority) {
+      switch (todo.priority) {
+        case 'Low':
           priority.textContent = 'Low priority';
           priority.classList.add('lowPriority');
           break;
-        case 'medium':
+        case 'Medium':
           priority.textContent = 'Medium priority';
           priority.classList.add('mediumPriority');
           break;
-        case 'high':
+        case 'High':
           priority.textContent = 'High priority';
           priority.classList.add('highPriority');
           break;
       }
     }
-
-    checkbox.addEventListener('click', events.markComplete);
-    listItem.addEventListener('click', renderDetailsPopup);
   };
 
   const clearList = () => {
@@ -168,21 +172,15 @@ const render = (() => {
   };
 
   const renderModifiedTodo = (id) => {
+    const todo = todoRepo.todos[id];
     const todoItems = Array.from(document.querySelectorAll('.todoItem'));
+    let elements;
     for (const item of todoItems) {
       if (item.todoID === id) {
-        const todo = todoRepo.todos[id];
-        const elements = item.children;
-
-        elements[1].textContent = todo.title;
-        elements[2].textContent = todo.priority;
-        elements[3].textContent = todo.description;
-        elements[4].textContent = todo.dueDate;
-        console.log(elements);
-        //class todoText, class todoItem
-        // { 0: input.checkbox, 1: label.todoText, 2: p.priorityText, 3: p.descriptionText, 4: p.dueDateText, length: 5 }
+        elements = item.children; // { 0: input.checkbox, 1: label.todoText, 2: p.priorityText, 3: p.descriptionText, 4: p.dueDateText, length: 5 }
       }
     }
+    fillItemDetails(todo, elements[1], elements[2], elements[3], elements[4]);
   };
 
   const resetForm = () => {

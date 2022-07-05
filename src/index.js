@@ -2,13 +2,13 @@ import { events } from '/src/dom/events';
 
 // figure out how to save data
 
-// create a flex box for date and priority
+// delete random console log statements
 
-// add datePriorityFlex class to d p when created item
+// get github pages to work, look on op discord
 
 // add github logo
 
-//rename repo / project with lower case
+//rename get repo with lower case
 
 //fav icon
 

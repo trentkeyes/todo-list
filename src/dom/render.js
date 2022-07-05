@@ -4,7 +4,14 @@ import { projectRepo } from '../repos/projectRepo';
 
 const render = (() => {
   // todo items
+  let testvar;
   let currentListElement;
+  const getCurrentListElement = () => currentListElement;
+  const setCurrentListElement = (obj) => {
+    currentListElement = obj;
+    console.log(currentListElement);
+  };
+
   const list = document.querySelector('.todo-list');
   const form = document.querySelector('.todo-form');
   const detailsPopup = document.querySelector('#detailsPopup');
@@ -16,7 +23,6 @@ const render = (() => {
     const priority = document.createElement('p');
     const dueDate = document.createElement('p');
     const description = document.createElement('p');
-    const datePriorityFlex = document.createElement('div');
     checkbox.setAttribute('type', 'checkbox');
     checkbox.classList.add('checkbox');
     listItem.classList.add('todoItem');
@@ -24,41 +30,45 @@ const render = (() => {
     priority.classList.add('priorityText');
     description.classList.add('descriptionText');
     dueDate.classList.add('dueDateText');
-    datePriorityFlex.classList.add('datePriorityFlex');
 
     list.insertBefore(listItem, form);
     listItem.appendChild(checkbox);
     listItem.appendChild(title);
     listItem.appendChild(description);
-    listItem.appendChild(datePriorityFlex);
-    datePriorityFlex.append(dueDate, priority);
+    listItem.appendChild(dueDate);
+    listItem.appendChild(priority);
 
     checkbox.addEventListener('click', events.markComplete);
     listItem.addEventListener('click', events.popupDetailsForm);
 
     listItem.todoID = todo.id;
-    currentListElement = listItem;
-    fillItemDetails(todo, title, priority, description, dueDate);
+    console.log(listItem.todoID);
+    fillItemDetails(todo, title, description, dueDate, priority);
   };
 
-  const fillItemDetails = (todo, title, priority, description, dueDate) => {
+  const fillItemDetails = (todo, title, description, dueDate, priority) => {
     title.textContent = todo.title;
     description.textContent = todo.description;
     if (todo.dueDate) {
       dueDate.textContent = `${todo.getDueDate}`;
     }
     if (todo.priority) {
+      console.log(todo.priority);
       switch (todo.priority) {
         case 'Low':
           priority.textContent = 'Low priority';
+          priority.classList.remove('mediumPriority', 'highPriority');
           priority.classList.add('lowPriority');
+
           break;
         case 'Medium':
           priority.textContent = 'Medium priority';
+          priority.classList.remove('lowPriority', 'highPriority');
           priority.classList.add('mediumPriority');
           break;
         case 'High':
           priority.textContent = 'High priority';
+          priority.classList.remove('lowPriority', 'mediumPriority');
           priority.classList.add('highPriority');
           break;
       }
@@ -67,29 +77,10 @@ const render = (() => {
 
   const renderModifiedTodo = (id) => {
     const todo = todoRepo.todos[id];
-    console.log(currentListElement);
-    const todoItems = Array.from(document.querySelectorAll('.todoItem'));
-    let elements;
-    let datePriorityFlex;
-    for (const item of todoItems) {
-      if (item.todoID === id) {
-        elements = item.children; // { 0: input.checkbox, 1: label.todoText, 2: p.priorityText, 3: div }
-        datePriorityFlex = elements[3].children;
-      }
-    }
-    console.log(elements, datePriorityFlex);
-    console.log(
-      `Modifying: ${
-        elements[2] //elements[2], datePriorityFlex[0], datePriorityFlex[1])
-      }`
-    );
-    fillItemDetails(
-      todo,
-      elements[1],
-      elements[2],
-      datePriorityFlex[0],
-      datePriorityFlex[1]
-    );
+    const elements = getCurrentListElement().children;
+    console.log(elements);
+    //
+    fillItemDetails(todo, elements[1], elements[2], elements[3], elements[4]);
   };
 
   const renderRemovedItem = (item) => {
@@ -101,7 +92,7 @@ const render = (() => {
     const project = e.target.id;
     const projectID = projectRepo.getProjectID(project);
     clearList();
-    renderingProject = projectID;
+    projectRepo.currentProject = projectID;
     const todoList = projectRepo.getProjectItems(projectID);
     todoList.forEach((item) => {
       renderTodoItem(item);
@@ -111,7 +102,7 @@ const render = (() => {
 
   const renderCompletedList = () => {
     const todoList = todoRepo.getCompletedTodos;
-    renderingProject = 'Completed';
+    projectRepo.currentProject = 'Completed';
     clearList();
     todoList.forEach((item) => {
       const listItem = document.createElement('li');
@@ -141,8 +132,8 @@ const render = (() => {
       }
     });
   };
-  //projects
 
+  //projects
   const projectHeader = document.querySelector('.inbox-header');
 
   const renderProjectTitle = (project) => {
@@ -173,9 +164,8 @@ const render = (() => {
   const priority = document.querySelector('#priority');
   const project = document.querySelector('#projectName');
 
-  const renderPreviousDetails = (id) => {
+  const renderSavedDetails = (id) => {
     const todo = todoRepo.todos[id];
-
     taskName.value = todo.title;
     description.value = todo.description;
     dueDate.value = todo.dueDate;
@@ -205,8 +195,9 @@ const render = (() => {
     renderProjectSelect,
     closeDetailsPopup,
     renderModifiedTodo,
-    renderPreviousDetails,
-    currentListElement,
+    renderSavedDetails,
+    setCurrentListElement,
+    testvar,
   };
 })();
 

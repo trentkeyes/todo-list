@@ -98,18 +98,17 @@ a {
 }
 
 .todoItem {
-    padding: 10px 0px 5px 5px;
+    padding: 10px;
     background-color: hsl(0deg 0% 12%);
     border-radius: 2px;
     border-bottom: 1px solid rgba(219, 219, 219, 0.432);
     display: grid;
     grid-template-areas:
-    
-        "checkbox title ."
-        ". description ."
-        ". datePriorityFlex .";
+        "checkbox title dueDate priority"
+        ". description . .";
         
-    grid-template-columns: auto auto 1fr;
+    grid-template-columns: auto 1fr auto auto;
+    align-items: center;
     column-gap: 1rem;
     row-gap: .5rem;
 }
@@ -120,10 +119,6 @@ a {
 
 .checkbox {
     grid-area: checkbox;
-}
-
-.todoItem {
-    background-color: maroon;
 }
 
 .todoText {
@@ -161,15 +156,8 @@ a {
     grid-area: dueDate;
     background-color: inherit;
     color: rgb(235, 37, 159);
-    padding-bottom: 5px;
     font-size: 14px;
     font-weight: 700;
-}
-
-.datePriorityFlex {
-    grid-area: datePriorityFlex;
-    display: flex;
-    background-color: inherit;
 }
 
 .strikethrough {

@@ -14,14 +14,16 @@ const events = (() => {
     projectRepo.createProject('Inbox');
     render.renderProjectSelect('Inbox');
   };
-  // create todo / save todo
+
   const inputTodo = () => {
     console.log(`Inputting ${todoRepo.currentTodo}`);
+    // modify if todo has already been created
     if (todoRepo.currentTodo !== null) {
       const id = todoRepo.currentTodo;
-      updateTodo(id);
+      updateTodoRecord(id);
       return;
     }
+    // create a new todo
     const item = todoRepo.createTodo(
       taskName.value,
       description.value,
@@ -35,7 +37,7 @@ const events = (() => {
     render.closeDetailsPopup();
   };
 
-  const updateTodo = (id) => {
+  const updateTodoRecord = (id) => {
     todoRepo.updateTodo(id, (record) => {
       record.setTitle = taskName.value;
       record.setDescription = description.value;
@@ -73,17 +75,29 @@ const events = (() => {
     if (e.target.type === 'checkbox') {
       return;
     }
-    const idToModify = e.target.todoID;
     detailsPopup.classList.add('open-popup');
-    //previoustodo problem, doesn't work with zero, try with current element
-    if (idToModify >= 0) {
-      render.currentListElement = e.target;
-      console.log(`modifying ${idToModify}`);
-      todoRepo.currentTodo = idToModify;
-      render.renderPreviousDetails(idToModify);
+    if (e.target.id === 'taskButton') {
+      console.log('starting fresh');
       return;
     }
-    console.log('starting fresh');
+    console.log(e.target);
+    let idToModify;
+    //if p or label is clicked, remember parent li element
+    if (
+      e.target.className === 'todoText' ||
+      e.target.className === 'priorityText' ||
+      e.target.className === 'descriptionText' ||
+      e.target.className === 'dueDateText'
+    ) {
+      render.setCurrentListElement(e.target.parentElement);
+      idToModify = e.target.parentElement.todoID;
+    } else if (e.target.className === 'todoItem') {
+      render.setCurrentListElement(e.target);
+      idToModify = e.target.todoID;
+    }
+    console.log(`modifying ${idToModify}`);
+    todoRepo.currentTodo = idToModify;
+    render.renderSavedDetails(idToModify);
   };
 
   const addTaskButton = document.querySelector('#taskButton');

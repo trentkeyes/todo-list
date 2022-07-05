@@ -1,15 +1,13 @@
-import { events } from './events';
+import { events } from '../index';
 import { todoRepo } from '../repos/todoRepo';
 import { projectRepo } from '../repos/projectRepo';
 
 const render = (() => {
   // todo items
-  let testvar;
   let currentListElement;
   const getCurrentListElement = () => currentListElement;
   const setCurrentListElement = (obj) => {
     currentListElement = obj;
-    console.log(currentListElement);
   };
 
   const list = document.querySelector('.todo-list');
@@ -197,7 +195,6 @@ const render = (() => {
     renderModifiedTodo,
     renderSavedDetails,
     setCurrentListElement,
-    testvar,
   };
 })();
 

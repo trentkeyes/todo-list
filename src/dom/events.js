@@ -8,15 +8,18 @@ const events = (() => {
   const dueDate = document.querySelector('#dueDate');
   const priority = document.querySelector('#priority');
   const project = document.querySelector('#projectName');
+  const detailsPopup = document.querySelector('#detailsPopup');
 
   const createInboxProject = () => {
     projectRepo.createProject('Inbox');
     render.renderProjectSelect('Inbox');
   };
-
+  // create todo / save todo
   const inputTodo = () => {
-    if (todoRepo.activeTodo !== null) {
-      updateTodo();
+    console.log(`Inputting ${todoRepo.currentTodo}`);
+    if (todoRepo.currentTodo !== null) {
+      const id = todoRepo.currentTodo;
+      updateTodo(id);
       return;
     }
     const item = todoRepo.createTodo(
@@ -26,26 +29,26 @@ const events = (() => {
       priority.value,
       project.value
     );
-    if (item && render.getRenderingProject() === item.projectID) {
+    if (item && projectRepo.currentProject === item.projectID) {
       render.renderTodoItem(item);
     }
-    render.resetForm();
+    render.closeDetailsPopup();
   };
 
-  const updateTodo = () => {
-    const todoID = todoRepo.activeTodo;
-    todoRepo.updateTodo(todoID, (record) => {
+  const updateTodo = (id) => {
+    todoRepo.updateTodo(id, (record) => {
       record.setTitle = taskName.value;
       record.setDescription = description.value;
       record.setDueDate = dueDate.value;
       record.setPriority = priority.value;
       record.setProjectID = projectRepo.getProjectID(project.value);
     });
-    if (todoRepo.todos[todoID].projectID === render.getRenderingProject()) {
-      render.renderModifiedTodo(todoID);
+    if (todoRepo.todos[id].projectID === projectRepo.currentProject) {
+      render.renderModifiedTodo(id);
+      console.log('updated and rendered');
     }
-    todoRepo.activeTodo = null;
-    render.resetForm();
+    todoRepo.currentTodo = null;
+    render.closeDetailsPopup();
   };
 
   const createProject = () => {
@@ -66,8 +69,25 @@ const events = (() => {
     });
   };
 
+  const popupDetailsForm = (e) => {
+    if (e.target.type === 'checkbox') {
+      return;
+    }
+    const idToModify = e.target.todoID;
+    detailsPopup.classList.add('open-popup');
+    //previoustodo problem, doesn't work with zero, try with current element
+    if (idToModify >= 0) {
+      render.currentListElement = e.target;
+      console.log(`modifying ${idToModify}`);
+      todoRepo.currentTodo = idToModify;
+      render.renderPreviousDetails(idToModify);
+      return;
+    }
+    console.log('starting fresh');
+  };
+
   const addTaskButton = document.querySelector('#taskButton');
-  addTaskButton.addEventListener('click', render.renderDetailsPopup);
+  addTaskButton.addEventListener('click', popupDetailsForm);
 
   const addProjectButton = document.querySelector('#projectButton');
   addProjectButton.addEventListener('click', createProject);
@@ -88,6 +108,7 @@ const events = (() => {
 
   return {
     markComplete,
+    popupDetailsForm,
   };
 })();
 

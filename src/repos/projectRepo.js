@@ -5,6 +5,7 @@ class ProjectRepo {
   constructor() {
     this.projects = [];
     this.id = 0;
+    this.currentProject = 0;
   }
   createProject(title) {
     if (this.isValid(title)) {
@@ -29,9 +30,6 @@ class ProjectRepo {
   }
   isValid(title) {
     return title !== '' && this.getProjectID(title) === undefined;
-  }
-  get getNewProj() {
-    return this.projects[this.projects.length - 1];
   }
 }
 

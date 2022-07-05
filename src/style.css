@@ -107,12 +107,11 @@ a {
     
         "checkbox title ."
         ". description ."
-        ". dueDate priority";
+        ". datePriorityFlex .";
         
     grid-template-columns: auto auto 1fr;
     column-gap: 1rem;
     row-gap: .5rem;
-
 }
 
 .todoItem:hover {
@@ -130,7 +129,7 @@ a {
 .todoText {
     grid-area: title;
     background-color: inherit;
-    font-size: 24px;
+    font-size: 32px;
 }
 
 .priorityText {
@@ -167,6 +166,12 @@ a {
     font-weight: 700;
 }
 
+.datePriorityFlex {
+    grid-area: datePriorityFlex;
+    display: flex;
+    background-color: inherit;
+}
+
 .strikethrough {
     text-decoration-line: line-through;
     text-decoration-thickness: 2px;
@@ -194,9 +199,9 @@ a {
 .detailsGrid {
     display: grid;
     grid-template-areas:
-        "title project close"
+        "title priority close"
         "description date ."
-        "description priority ."
+        "description project ."
         "save . .";
     grid-template-columns: 1fr 1fr auto;
     background-color: hsl(0deg 0% 14%);

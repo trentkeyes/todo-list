@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { format } from 'date-fns';
 
 class TodoModel {
   constructor(id, title, description, dueDate, priority, projectID) {
@@ -8,9 +8,22 @@ class TodoModel {
     (this.priority = priority), (this.projectID = projectID);
     this.complete = false;
   }
+  createJSON() {
+    return {
+      id: this.id,
+      title: this.title,
+      description: this.description,
+      dueDate: this.dueDate,
+      priority: this.priority,
+      projectID: this.projectID,
+      complete: this.complete,
+    };
+  }
+  // create JSON object
+  // when modifying use, make json function
   get getDueDate() {
-    const split = this.dueDate.split("-");
-    return format(new Date(split[0], Number(split[1]) - 1, split[2]), "PPPP");
+    const split = this.dueDate.split('-');
+    return format(new Date(split[0], Number(split[1]) - 1, split[2]), 'PPPP');
   }
   set setID(newID) {
     this.id = newID;
@@ -36,3 +49,5 @@ class TodoModel {
 }
 
 export { TodoModel };
+
+//create JSON todo model, project model

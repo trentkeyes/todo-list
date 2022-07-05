@@ -40,7 +40,6 @@ const render = (() => {
     listItem.addEventListener('click', events.popupDetailsForm);
 
     listItem.todoID = todo.id;
-    console.log(listItem.todoID);
     fillItemDetails(todo, title, description, dueDate, priority);
   };
 
@@ -51,7 +50,6 @@ const render = (() => {
       dueDate.textContent = `${todo.getDueDate}`;
     }
     if (todo.priority) {
-      console.log(todo.priority);
       switch (todo.priority) {
         case 'Low':
           priority.textContent = 'Low priority';
@@ -76,8 +74,6 @@ const render = (() => {
   const renderModifiedTodo = (id) => {
     const todo = todoRepo.todos[id];
     const elements = getCurrentListElement().children;
-    console.log(elements);
-    //
     fillItemDetails(todo, elements[1], elements[2], elements[3], elements[4]);
   };
 

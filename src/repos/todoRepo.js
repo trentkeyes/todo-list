@@ -6,6 +6,7 @@ class TodoRepo {
     this.todos = [];
     this.id = 0;
     this.currentTodo = null;
+    this.todosJSON = [];
   }
   createTodo(title, description, dueDate, priority, project) {
     if (title !== '') {
@@ -21,12 +22,22 @@ class TodoRepo {
       this.todos.push(todo);
       this.id++;
       console.log(todo);
+      //save to local storage
+
+      this.todosJSON.push(todo.createJSON());
+      console.log(this.todosJSON);
+      localStorage.setItem('todos', JSON.stringify(this.todosJSON));
+      console.log(localStorage.todos);
       return todo;
     }
   }
   updateTodo(id, action) {
     const record = this.todos[id];
     action(record);
+    // save to local storage
+    this.todosJSON[id] = record;
+    localStorage.setItem('todos', this.todosJSON);
+    console.log(localStorage);
   }
 
   get getCompletedTodos() {

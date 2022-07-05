@@ -16,7 +16,6 @@ const events = (() => {
   };
 
   const inputTodo = () => {
-    console.log(`Inputting ${todoRepo.currentTodo}`);
     // modify if todo has already been created
     if (todoRepo.currentTodo !== null) {
       const id = todoRepo.currentTodo;
@@ -47,7 +46,6 @@ const events = (() => {
     });
     if (todoRepo.todos[id].projectID === projectRepo.currentProject) {
       render.renderModifiedTodo(id);
-      console.log('updated and rendered');
     }
     todoRepo.currentTodo = null;
     render.closeDetailsPopup();
@@ -77,10 +75,8 @@ const events = (() => {
     }
     detailsPopup.classList.add('open-popup');
     if (e.target.id === 'taskButton') {
-      console.log('starting fresh');
       return;
     }
-    console.log(e.target);
     let idToModify;
     //if p or label is clicked, remember parent li element
     if (
@@ -95,7 +91,6 @@ const events = (() => {
       render.setCurrentListElement(e.target);
       idToModify = e.target.todoID;
     }
-    console.log(`modifying ${idToModify}`);
     todoRepo.currentTodo = idToModify;
     render.renderSavedDetails(idToModify);
   };
@@ -130,11 +125,9 @@ export { events };
 
 // figure out how to save data
 
-// delete random console log statements
+//figure out how to deploy again
 
 // get github pages to work, look on op discord
-
-// add github logo
 
 //rename get repo with lower case
 

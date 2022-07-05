@@ -56,9 +56,13 @@ body {
 
 .footer {
     grid-area: footer;
-    padding: 10px;
+    padding: 15px;
     padding-left: 40px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
 }
 
 .header,
@@ -294,4 +298,8 @@ select {
 
 .completed {
     margin-top: auto;
+}
+
+.footer p, .footer img{
+    background-color: inherit;
 }

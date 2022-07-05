@@ -2,89 +2,89 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Todoish</title>
-  <link rel="stylesheet" href="/src/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todoish</title>
+    <link rel="stylesheet" href="/src/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <div class="wrapper">
-    <header class="header">Todoish</header>
-    <nav class="nav">
-      <ul class="projectList">
-        <li><a id="Inbox" href="#">Inbox</a></li>
+    <div class="wrapper">
+        <header class="header">Todoish</header>
+        <nav class="nav">
+            <ul class="projectList">
+                <li><a id="Inbox" href="#">Inbox</a></li>
 
-        <li class="newProject">
-          <label for="New Project"></label>
-          <input type="text" id="newProject" name="project" placeholder="New project" size="10">
-        </li>
-        <li>
-          <input type="button" value="+ Add project" id="projectButton" class="button" name="project">
-        </li>
-        <li class="completed"><a id="Completed" href="#">Completed tasks</a></li>
-      </ul>
-    </nav>
-    <div class="main">
-      <div class="todoList-wrapper">
-        <h1 class="inbox-header">Inbox</h1>
-        <div class="todo-list">
-          <div class="todo-form">
-            <ul>
-              <li>
-                <input type="button" value="+ Add task" id="taskButton" class="button" name="task">
-              </li>
+                <li class="newProject">
+                    <label for="New Project"></label>
+                    <input type="text" id="newProject" name="project" placeholder="New project" size="10">
+                </li>
+                <li>
+                    <input type="button" value="+ Add project" id="projectButton" class="button" name="project">
+                </li>
+                <li class="completed"><a id="Completed" href="#">Completed tasks</a></li>
             </ul>
-          </div>
+        </nav>
+        <div class="main">
+            <div class="todoList-wrapper">
+                <h1 class="inbox-header">Inbox</h1>
+                <div class="todo-list">
+                    <div class="todo-form">
+                        <ul>
+                            <li>
+                                <input type="button" value="+ Add task" id="taskButton" class="button" name="task">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <footer class="footer">Made by Trent. insert github logo</footer>
-    <div class="details-popup" id="detailsPopup">
-      <ul class="detailsGrid">
-        <li class="gridTaskName">
-          <label for="Task name"></label>
-          <input type="text" id="taskName" name="task" placeholder="Task name" size="25">
-        </li>
-        <li class="gridClose">
-          <label for="Close details window"></label>
-          <input type="button" value="Close" id="closeButton" class="button close">
-        </li>
+        <footer class="footer">Made by Trent. insert github logo</footer>
+        <div class="details-popup" id="detailsPopup">
+            <ul class="detailsGrid">
+                <li class="gridTaskName">
+                    <label for="Task name"></label>
+                    <input type="text" id="taskName" name="task" placeholder="Task name" size="25">
+                </li>
+                <li class="gridClose">
+                    <label for="Close details window"></label>
+                    <input type="button" value="Close" id="closeButton" class="button close">
+                </li>
 
-        <li class="gridDescription">
-          <label for="Description"></label>
-          <textarea name="" id="description" cols="25" rows="3" placeholder="Description"></textarea>
-        </li>
-        <li>
-        </li>
-        <li class="gridDate">
-          <input type="date" id="dueDate" name="task">
-        </li>
-        <li class="gridPriority">
-          <label for="priority-select"></label>
-          <select name="task" id="priority">
-            <option value="">Priority</option>
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-          </select>
-        </li>
-        <li class="gridProjectName">
-          <label for="project-select"></label>
-          <select name="task" id="projectName">
-          </select>
-        </li>
-        <li class="gridSave">
-          <input type="button" value="Save" id="saveButton" class="button save">
-        </li>
-      </ul>
+                <li class="gridDescription">
+                    <label for="Description"></label>
+                    <textarea name="" id="description" cols="25" rows="3" placeholder="Description"></textarea>
+                </li>
+                <li>
+                </li>
+                <li class="gridDate">
+                    <input type="date" id="dueDate" name="task">
+                </li>
+                <li class="gridPriority">
+                    <label for="priority-select"></label>
+                    <select name="task" id="priority">
+                        <option value="">Priority</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </li>
+                <li class="gridProjectName">
+                    <label for="project-select"></label>
+                    <select name="task" id="projectName">
+                    </select>
+                </li>
+                <li class="gridSave">
+                    <input type="button" value="Save" id="saveButton" class="button save">
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
-  <script src="main.js" type="module" defer></script>
+    <script src="main.js" type="module" defer></script>
 </body>
 
 </html>

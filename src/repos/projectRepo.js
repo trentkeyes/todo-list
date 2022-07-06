@@ -1,7 +1,8 @@
 import { ProjectModel } from '/src/models/projectModel';
-import { todoRepo } from './todoRepo';
+import { todoRepo } from '/src/index';
+import { storage } from '..';
 
-class ProjectRepo {
+export class ProjectRepo {
   constructor() {
     this.projects = [];
     this.id = 0;
@@ -12,6 +13,9 @@ class ProjectRepo {
       const project = new ProjectModel(this.id, title);
       this.projects.push(project);
       this.id++;
+      storage.projectsJSON.push(project.createJSON());
+      console.log(this.projects);
+      localStorage.setItem('projects', JSON.stringify(storage.projectsJSON));
       return project;
     }
   }
@@ -32,7 +36,3 @@ class ProjectRepo {
     return title !== '' && this.getProjectID(title) === undefined;
   }
 }
-
-const projectRepo = new ProjectRepo();
-
-export { projectRepo };

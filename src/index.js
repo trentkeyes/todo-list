@@ -1,140 +1,45 @@
-import { todoRepo } from './repos/todoRepo';
-import { projectRepo } from './repos/projectRepo';
+import { events } from './dom/events';
 import { render } from './dom/render';
+import { TodoRepo } from './repos/todoRepo';
+import { ProjectRepo } from './repos/projectRepo';
 
-const events = (() => {
-  const taskName = document.querySelector('#taskName');
-  const description = document.querySelector('#description');
-  const dueDate = document.querySelector('#dueDate');
-  const priority = document.querySelector('#priority');
-  const project = document.querySelector('#projectName');
-  const detailsPopup = document.querySelector('#detailsPopup');
+//fix todos not modifying
 
-  const createInboxProject = () => {
-    projectRepo.createProject('Inbox');
-    render.renderProjectSelect('Inbox');
-  };
+//populate project sidebar on startup
 
-  const inputTodo = () => {
-    // modify if todo has already been created
-    if (todoRepo.currentTodo !== null) {
-      const id = todoRepo.currentTodo;
-      updateTodoRecord(id);
-      return;
-    }
-    // create a new todo
-    const item = todoRepo.createTodo(
-      taskName.value,
-      description.value,
-      dueDate.value,
-      priority.value,
-      project.value
-    );
-    if (item && projectRepo.currentProject === item.projectID) {
-      render.renderTodoItem(item);
-    }
-    render.closeDetailsPopup();
-  };
+const todoRepo = new TodoRepo();
+const projectRepo = new ProjectRepo();
 
-  const updateTodoRecord = (id) => {
-    todoRepo.updateTodo(id, (record) => {
-      record.setTitle = taskName.value;
-      record.setDescription = description.value;
-      record.setDueDate = dueDate.value;
-      record.setPriority = priority.value;
-      record.setProjectID = projectRepo.getProjectID(project.value);
-    });
-    if (todoRepo.todos[id].projectID === projectRepo.currentProject) {
-      render.renderModifiedTodo(id);
-    }
-    todoRepo.currentTodo = null;
-    render.closeDetailsPopup();
-  };
-
-  const createProject = () => {
-    const title = document.querySelector('#newProject');
-    const project = projectRepo.createProject(title.value);
-    if (project) {
-      render.renderProjectTitle(project.title);
-      render.renderProjectSelect(project.title);
-    }
-    title.value = '';
-  };
-
-  const markComplete = (e) => {
-    const item = e.target.parentElement;
-    render.renderRemovedItem(item);
-    todoRepo.updateTodo(item.todoID, (record) => {
-      record.setCompleteStatus = true;
-    });
-  };
-
-  const popupDetailsForm = (e) => {
-    if (e.target.type === 'checkbox') {
-      return;
-    }
-    detailsPopup.classList.add('open-popup');
-    if (e.target.id === 'taskButton') {
-      return;
-    }
-    let idToModify;
-    //if p or label is clicked, remember parent li element
-    if (
-      e.target.className === 'todoText' ||
-      e.target.className === 'priorityText' ||
-      e.target.className === 'descriptionText' ||
-      e.target.className === 'dueDateText'
-    ) {
-      render.setCurrentListElement(e.target.parentElement);
-      idToModify = e.target.parentElement.todoID;
-    } else if (e.target.className === 'todoItem') {
-      render.setCurrentListElement(e.target);
-      idToModify = e.target.todoID;
-    }
-    todoRepo.currentTodo = idToModify;
-    render.renderSavedDetails(idToModify);
-  };
-
-  const addTaskButton = document.querySelector('#taskButton');
-  addTaskButton.addEventListener('click', popupDetailsForm);
-
-  const addProjectButton = document.querySelector('#projectButton');
-  addProjectButton.addEventListener('click', createProject);
-
-  const saveButton = document.querySelector('#saveButton');
-  saveButton.addEventListener('click', inputTodo);
-
-  const inbox = document.querySelector('#Inbox');
-  inbox.addEventListener('click', render.renderTodoList);
-
-  const completed = document.querySelector('#Completed');
-  completed.addEventListener('click', render.renderCompletedList);
-
-  const closeButton = document.querySelector('#closeButton');
-  closeButton.addEventListener('click', render.closeDetailsPopup);
-
-  createInboxProject();
-
+const storage = (() => {
+  let todosJSON = [];
+  let projectsJSON = [];
+  console.log(!localStorage.getItem('todos'));
+  if (!localStorage.getItem('todos')) {
+    localStorage.setItem('todos', todosJSON);
+    console.log('no todo data');
+  } else {
+    todosJSON = JSON.parse(localStorage.getItem('todos'));
+    console.log(todosJSON, 'heres todo data');
+    todoRepo.todos = todosJSON;
+  }
+  if (!localStorage.getItem('projects')) {
+    localStorage.setItem('projects', projectsJSON);
+    console.log('no project data');
+  } else {
+    todosJSON = JSON.parse(localStorage.getItem('todos'));
+    console.log(todosJSON, 'heres project data');
+    projectRepo.projects = projectsJSON;
+  }
   return {
-    markComplete,
-    popupDetailsForm,
+    todosJSON,
+    projectsJSON,
   };
 })();
+const createInboxProject = () => {
+  projectRepo.createProject('Inbox');
+  render.renderProjectSelect('Inbox');
+};
+createInboxProject();
+render.renderInboxList();
 
-export { events };
-
-// figure out how to save data
-
-//figure out how to deploy again
-
-// get github pages to work, look on op discord
-
-//rename get repo with lower case
-
-//fav icon
-
-// new js application
-
-// could create a parameter to configure application
-
-//current project id param
+export { storage, todoRepo, projectRepo };

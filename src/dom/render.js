@@ -1,6 +1,6 @@
-import { events } from '../index';
-import { todoRepo } from '../repos/todoRepo';
-import { projectRepo } from '../repos/projectRepo';
+import { events } from './events';
+import { todoRepo } from '/src/index';
+import { projectRepo } from '/src/index';
 
 const render = (() => {
   // todo items
@@ -82,6 +82,15 @@ const render = (() => {
   };
 
   // todo lists
+
+  const renderInboxList = () => {
+    const todoList = projectRepo.getProjectItems(0);
+    todoList.forEach((item) => {
+      console.log(item.complete);
+      if (item.complete === false) renderTodoItem(item);
+    });
+  };
+
   const renderTodoList = (e) => {
     const project = e.target.id;
     const projectID = projectRepo.getProjectID(project);
@@ -143,6 +152,8 @@ const render = (() => {
     listItemA.addEventListener('click', renderTodoList);
   };
 
+  //render proj list
+
   const renderProjectSelect = (project) => {
     const projectSelect = document.querySelector('#projectName');
     const newOption = document.createElement('option');
@@ -182,6 +193,7 @@ const render = (() => {
 
   return {
     renderTodoItem,
+    renderInboxList,
     renderTodoList,
     renderCompletedList,
     renderRemovedItem,

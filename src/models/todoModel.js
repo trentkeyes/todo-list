@@ -19,14 +19,9 @@ class TodoModel {
       complete: this.complete,
     };
   }
-  // create JSON object
-  // when modifying use, make json function
   get getDueDate() {
     const split = this.dueDate.split('-');
     return format(new Date(split[0], Number(split[1]) - 1, split[2]), 'PPPP');
-  }
-  set setID(newID) {
-    this.id = newID;
   }
   set setCompleteStatus(newStatus) {
     this.complete = newStatus;
@@ -49,5 +44,3 @@ class TodoModel {
 }
 
 export { TodoModel };
-
-//create JSON todo model, project model

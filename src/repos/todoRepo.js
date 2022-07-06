@@ -1,12 +1,12 @@
 import { TodoModel } from '/src/models/todoModel';
-import { projectRepo } from '/src/repos/projectRepo';
+import { projectRepo } from '/src/index';
+import { storage } from '..';
 
-class TodoRepo {
+export class TodoRepo {
   constructor() {
     this.todos = [];
     this.id = 0;
     this.currentTodo = null;
-    this.todosJSON = [];
   }
   createTodo(title, description, dueDate, priority, project) {
     if (title !== '') {
@@ -21,13 +21,9 @@ class TodoRepo {
       todo.setProjectID = projectID;
       this.todos.push(todo);
       this.id++;
-      console.log(todo);
       //save to local storage
-
-      this.todosJSON.push(todo.createJSON());
-      console.log(this.todosJSON);
-      localStorage.setItem('todos', JSON.stringify(this.todosJSON));
-      console.log(localStorage.todos);
+      storage.todosJSON.push(todo.createJSON());
+      localStorage.setItem('todos', JSON.stringify(storage.todosJSON));
       return todo;
     }
   }
@@ -35,9 +31,8 @@ class TodoRepo {
     const record = this.todos[id];
     action(record);
     // save to local storage
-    this.todosJSON[id] = record;
-    localStorage.setItem('todos', this.todosJSON);
-    console.log(localStorage);
+    storage.todosJSON[id] = record;
+    localStorage.setItem('todos', JSON.stringify(storage.todosJSON));
   }
 
   get getCompletedTodos() {
@@ -50,7 +45,3 @@ class TodoRepo {
     return completed;
   }
 }
-
-const todoRepo = new TodoRepo();
-
-export { todoRepo };

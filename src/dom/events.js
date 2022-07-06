@@ -41,6 +41,8 @@ const events = (() => {
     });
     if (todoRepo.todos[id].projectID === projectRepo.currentProject) {
       render.renderModifiedTodo(id);
+    } else {
+      render.renderRemovedItem(render.getCurrentListElement());
     }
     todoRepo.currentTodo = null;
     render.closeDetailsPopup();
@@ -59,6 +61,7 @@ const events = (() => {
   const markComplete = (e) => {
     const item = e.target.parentElement;
     render.renderRemovedItem(item);
+    console.log(item);
     todoRepo.updateTodo(item.todoID, (record) => {
       record.complete = true;
     });

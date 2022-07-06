@@ -1,7 +1,5 @@
 import { TodoModel } from '/src/models/todoModel';
 import { projectRepo } from '/src/index';
-import { storage } from '..';
-import { TodoJSON } from '..';
 
 export class TodoRepo {
   constructor() {
@@ -27,7 +25,6 @@ export class TodoRepo {
       storage.push(todo);
       const stringifiedArr = JSON.stringify(storage);
       localStorage.setItem('todos', stringifiedArr);
-      console.log(localStorage);
       return todo;
     }
   }

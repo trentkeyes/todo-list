@@ -1,6 +1,5 @@
 import { ProjectModel } from '/src/models/projectModel';
 import { todoRepo } from '/src/index';
-import { storage } from '..';
 
 export class ProjectRepo {
   constructor() {
@@ -13,9 +12,12 @@ export class ProjectRepo {
       const project = new ProjectModel(this.id, title);
       this.projects.push(project);
       this.id++;
-      // storage.projectsJSON.push(project.createJSON());
-      console.log(this.projects);
-      // localStorage.setItem('projects', JSON.stringify(storage.projectsJSON));
+      //save to local storage
+      const storage = JSON.parse(localStorage.getItem('projects'));
+      storage.push(project);
+      const stringifiedArr = JSON.stringify(storage);
+      localStorage.setItem('projects', stringifiedArr);
+      console.log(localStorage);
       return project;
     }
   }

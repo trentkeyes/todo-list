@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import { events } from './events';
 import { todoRepo } from '/src/index';
 import { projectRepo } from '/src/index';
@@ -47,7 +48,11 @@ const render = (() => {
     title.textContent = todo.title;
     description.textContent = todo.description;
     if (todo.dueDate) {
-      dueDate.textContent = `${todo.getDueDate}`;
+      const split = todo.dueDate.split('-');
+      dueDate.textContent = format(
+        new Date(split[0], Number(split[1]) - 1, split[2]),
+        'PPPP'
+      );
     }
     if (todo.priority) {
       switch (todo.priority) {
@@ -138,6 +143,15 @@ const render = (() => {
   //projects
   const projectHeader = document.querySelector('.inbox-header');
 
+  const renderProjectList = () => {
+    const projectList = projectRepo.projects;
+    projectList.forEach((project) => {
+      if (project.title !== 'Inbox') {
+        renderProjectTitle(project.title);
+      }
+    });
+  };
+
   const renderProjectTitle = (project) => {
     const projectList = document.querySelector('.projectList');
     const projectInput = document.querySelector('.newProject');
@@ -151,7 +165,7 @@ const render = (() => {
     listItemA.addEventListener('click', renderTodoList);
   };
 
-  //render proj list
+  //render proj selector
 
   const renderProjectSelect = (project) => {
     const projectSelect = document.querySelector('#projectName');
@@ -159,6 +173,15 @@ const render = (() => {
     newOption.setAttribute('value', project);
     newOption.textContent = project;
     projectSelect.appendChild(newOption);
+  };
+
+  const renderProjectSelectors = () => {
+    const projectList = projectRepo.projects;
+    projectList.forEach((project) => {
+      if (project.title !== 'Inbox') {
+        renderProjectSelect(project.title);
+      }
+    });
   };
 
   // details form
@@ -196,11 +219,14 @@ const render = (() => {
     renderTodoList,
     renderCompletedList,
     renderRemovedItem,
+    renderProjectList,
     renderProjectTitle,
     renderProjectSelect,
+    renderProjectSelectors,
     closeDetailsPopup,
     renderModifiedTodo,
     renderSavedDetails,
+    getCurrentListElement,
     setCurrentListElement,
   };
 })();

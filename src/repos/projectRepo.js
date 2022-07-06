@@ -17,7 +17,6 @@ export class ProjectRepo {
       storage.push(project);
       const stringifiedArr = JSON.stringify(storage);
       localStorage.setItem('projects', stringifiedArr);
-      console.log(localStorage);
       return project;
     }
   }

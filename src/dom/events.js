@@ -61,7 +61,6 @@ const events = (() => {
   const markComplete = (e) => {
     const item = e.target.parentElement;
     render.renderRemovedItem(item);
-    console.log(item);
     todoRepo.updateTodo(item.todoID, (record) => {
       record.complete = true;
     });

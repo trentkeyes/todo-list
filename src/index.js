@@ -13,7 +13,6 @@ const storage = (() => {
   } else {
     todoRepo.todos = JSON.parse(localStorage.getItem('todos'));
     todoRepo.id = todoRepo.todos.length;
-    console.log(todoRepo.todos, 'heres parsed todo data', todoRepo.id);
   }
   if (!localStorage.getItem('projects')) {
     localStorage.setItem('projects', '[]');

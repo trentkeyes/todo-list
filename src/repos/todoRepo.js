@@ -1,6 +1,7 @@
 import { TodoModel } from '/src/models/todoModel';
 import { projectRepo } from '/src/index';
 import { storage } from '..';
+import { TodoJSON } from '..';
 
 export class TodoRepo {
   constructor() {
@@ -18,21 +19,26 @@ export class TodoRepo {
         priority
       );
       const projectID = projectRepo.getProjectID(project);
-      todo.setProjectID = projectID;
+      todo.projectID = projectID;
       this.todos.push(todo);
       this.id++;
       //save to local storage
-      storage.todosJSON.push(todo.createJSON());
-      localStorage.setItem('todos', JSON.stringify(storage.todosJSON));
+      const storage = JSON.parse(localStorage.getItem('todos'));
+      storage.push(todo);
+      const stringifiedArr = JSON.stringify(storage);
+      localStorage.setItem('todos', stringifiedArr);
+      console.log(localStorage);
       return todo;
     }
   }
   updateTodo(id, action) {
     const record = this.todos[id];
     action(record);
-    // save to local storage
-    storage.todosJSON[id] = record;
-    localStorage.setItem('todos', JSON.stringify(storage.todosJSON));
+    //modify local storage
+    const storage = JSON.parse(localStorage.getItem('todos'));
+    storage[id] = record;
+    const stringifiedArr = JSON.stringify(storage);
+    localStorage.setItem('todos', stringifiedArr);
   }
 
   get getCompletedTodos() {

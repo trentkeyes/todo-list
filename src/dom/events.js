@@ -33,11 +33,11 @@ const events = (() => {
 
   const updateTodoRecord = (id) => {
     todoRepo.updateTodo(id, (record) => {
-      record.setTitle = taskName.value;
-      record.setDescription = description.value;
-      record.setDueDate = dueDate.value;
-      record.setPriority = priority.value;
-      record.setProjectID = projectRepo.getProjectID(project.value);
+      record.title = taskName.value;
+      record.description = description.value;
+      record.dueDate = dueDate.value;
+      record.priority = priority.value;
+      record.projectID = projectRepo.getProjectID(project.value);
     });
     if (todoRepo.todos[id].projectID === projectRepo.currentProject) {
       render.renderModifiedTodo(id);
@@ -60,7 +60,7 @@ const events = (() => {
     const item = e.target.parentElement;
     render.renderRemovedItem(item);
     todoRepo.updateTodo(item.todoID, (record) => {
-      record.setCompleteStatus = true;
+      record.complete = true;
     });
   };
 

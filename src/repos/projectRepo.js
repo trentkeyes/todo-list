@@ -13,9 +13,9 @@ export class ProjectRepo {
       const project = new ProjectModel(this.id, title);
       this.projects.push(project);
       this.id++;
-      storage.projectsJSON.push(project.createJSON());
+      // storage.projectsJSON.push(project.createJSON());
       console.log(this.projects);
-      localStorage.setItem('projects', JSON.stringify(storage.projectsJSON));
+      // localStorage.setItem('projects', JSON.stringify(storage.projectsJSON));
       return project;
     }
   }

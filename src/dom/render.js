@@ -86,7 +86,6 @@ const render = (() => {
   const renderInboxList = () => {
     const todoList = projectRepo.getProjectItems(0);
     todoList.forEach((item) => {
-      console.log(item.complete);
       if (item.complete === false) renderTodoItem(item);
     });
   };

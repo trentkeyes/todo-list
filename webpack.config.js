@@ -1,11 +1,22 @@
-const path = require('path');
+const path = require("path");
 
 module.exports = {
-  devtool: 'inline-source-map',
-  entry: './src/index.js',
-  output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
+  entry: path.resolve(__dirname, "./src/index.js"),
+  module: {
+    rules: [
+      {
+        test: /\.(js)$/,
+        exclude: /node_modules/,
+        use: ["babel-loader"],
+      },
+    ],
   },
-  mode: 'development',
+  resolve: {
+    extensions: ["*", ".js"],
+  },
+  output: {
+    filename: "main.js",
+    path: path.resolve(__dirname, "dist"),
+  },
+  mode: "development",
 };

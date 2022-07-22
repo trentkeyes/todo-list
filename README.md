@@ -27,6 +27,8 @@ User can add "To-Do" tasks, edit details, create projects and view tasks by asso
 
 ### I learned about
 
+- Seperating JS code into different modules/files.
+- Using external libraries
 - In-depth details about DOM manipulation
 - Creating objects with classes and factory functions.
 - Local storage API

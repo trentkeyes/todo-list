@@ -2,6 +2,7 @@ import { format } from 'date-fns';
 import { events } from './events';
 import { todoRepo } from '/src/index';
 import { projectRepo } from '/src/index';
+import { getUserName } from '../user';
 
 const render = (() => {
   // todo items
@@ -213,6 +214,25 @@ const render = (() => {
     project.value = 'Inbox';
   };
 
+  // user
+  const userName = document.getElementById('username');
+  const signIn = document.getElementById('signin');
+  const signOut = document.getElementById('signout');
+
+  const userSignedIn = () => {
+    const user = getUserName();
+    userName.textContent = user;
+    userName.removeAttribute('hidden');
+    signOut.removeAttribute('hidden');
+    signIn.setAttribute('hidden', 'true');
+  };
+
+  const userSignedOut = () => {
+    userName.setAttribute('hidden', 'true');
+    signOut.setAttribute('hidden', 'true');
+    signIn.removeAttribute('hidden');
+  };
+
   return {
     renderTodoItem,
     renderInboxList,
@@ -228,6 +248,8 @@ const render = (() => {
     renderSavedDetails,
     getCurrentListElement,
     setCurrentListElement,
+    userSignedIn,
+    userSignedOut,
   };
 })();
 

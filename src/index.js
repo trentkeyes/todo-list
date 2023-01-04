@@ -2,6 +2,7 @@ import { events } from './dom/events';
 import { render } from './dom/render';
 import { TodoRepo } from './repos/todoRepo';
 import { ProjectRepo } from './repos/projectRepo';
+import { initFirebaseAuth } from './user';
 
 const todoRepo = new TodoRepo();
 const projectRepo = new ProjectRepo();
@@ -31,5 +32,7 @@ const storage = (() => {
 render.renderInboxList();
 render.renderProjectList();
 render.renderProjectSelectors();
+
+initFirebaseAuth();
 
 export { todoRepo, projectRepo, storage };

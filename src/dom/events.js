@@ -1,6 +1,7 @@
 import { render } from './render';
 import { todoRepo } from '/src/index';
 import { projectRepo } from '/src/index';
+import { signIn, signOutUser } from '../user';
 
 const events = (() => {
   const taskName = document.querySelector('#taskName');
@@ -109,6 +110,12 @@ const events = (() => {
 
   const closeButton = document.querySelector('#closeButton');
   closeButton.addEventListener('click', render.closeDetailsPopup);
+
+  const signInBtn = document.getElementById('signin');
+  signInBtn.addEventListener('click', signIn);
+
+  const signOutBtn = document.getElementById('signout');
+  signOutBtn.addEventListener('click', signOutUser);
 
   return {
     markComplete,

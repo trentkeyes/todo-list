@@ -1,5 +1,6 @@
 import { TodoModel } from '/src/models/todoModel';
 import { projectRepo } from '/src/index';
+import { addTodo } from '../api';
 
 export class TodoRepo {
   constructor() {
@@ -8,6 +9,7 @@ export class TodoRepo {
     this.currentTodo = null;
   }
   createTodo(title, description, dueDate, priority, project) {
+    console.log('creating todo');
     if (title !== '') {
       const todo = new TodoModel(
         this.id,
@@ -20,6 +22,8 @@ export class TodoRepo {
       todo.projectID = projectID;
       this.todos.push(todo);
       this.id++;
+      // save to firebase
+      addTodo({ title, description, dueDate, priority, project });
       //save to local storage
       const storage = JSON.parse(localStorage.getItem('todos'));
       storage.push(todo);
